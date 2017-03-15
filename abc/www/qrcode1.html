@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">  
+ <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />  
+ <link rel="stylesheet" href="css/themes/my-custom-theme.css" />
+
+<script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/jquery.mobile-1.4.5.js"></script>  
+ <script src="jss/jquery-1.4.4.min.js"></script>  
+<script type="text/javascript">
+
+
+function get(){
+ var queryString = new Array();
+
+          if (window.location.search.split('?').length > 1) {
+                var params = window.location.search.split('?')[1].split('&');
+                for (var i = 0; i < params.length; i++) {
+                    var key = params[i].split('=')[0];
+                    var value = decodeURIComponent(params[i].split('=')[1]);
+                    queryString[key] = value;
+                }
+            }
+            var myArray=queryString[key].split('|');
+
+
+              document.getElementById('name1').innerHTML =myArray[1];
+              }
+              
+
+function check_id()
+{
+var id=document.getElementById('results').innerHTML;
+	var res="theName="+id;
+
+$.ajax({
+		    		 type: "GET",
+    				 //url:"memberid.php",
+    				 url: "http://shopnearn.co.in/mobileapp/memberid.php",
+    				 data:res,
+		    		 success: function(msg){
+		   			if(msg==1 )
+			     		{
+             //alert(msg);
+					       	$('#results').fadeIn(1000);
+			      				document.getElementById('results').innerHTML="Member Id is NOT available"; 
+		      					$('#results').fadeOut(3500);
+												document.getElementById('results').value=""; 
+
+				    		}
+				else
+					     	{
+
+ $(function() {
+     $(document).ready(function() {
+           var qrContent = document.getElementById('results').innerHTML;
+
+
+           if(qrContent=="")
+            {
+           alert("Please Enter Code");       
+            }
+            else{
+          if(qrContent.length > 0)
+            { $.ajax({
+    //  url: "qrcode.php",
+      url: "http://shopnearn.co.in/mobileapp/qrcode.php",
+
+           type     : 'GET',
+             data: ({name: qrContent}),
+                  cache: false,
+                  dataType: "text",
+                  success: onSuccess
+                });}}
+                });
+   $("#resultLog").ajaxError(function(event, request, settings, exception) {
+          $("#resultLog").html("Error Calling: " + settings.url + "<br />HTTP Code: " + request.status);
+        });
+function onSuccess(data)
+        {
+    
+            $("#resultLog").html("Result: " + data);
+var aa=data.split('|');
+          		window.location.href="tieup_bill_new1.html?member="+aa[0]+'|'+aa[2]+'|'+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+        }
+  });
+				    			}
+				   }
+				});
+			
+	} 
+	function getreg1()
+	{
+	window.location.href="client_registration1.html?member="+localStorage.getItem("shopname");
+	} 
+	
+	function getpass1()
+	{
+	window.location.href="change_password.html?memember="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+	} 
+	function gethome1()
+	{
+	window.location.href="tieup_bill_new.html?memember="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+	} 
+		function getbill1()
+	{
+	window.location.href="view_tbill.html?memember="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+	} 
+</script>
+    </head>
+    <body onload="get();">
+
+<div data-role="panel" id="overlayPanel1" data-display="overlay" data-rel="back"> 
+    <ul data-role="listview">
+    <li data-icon="user"><a href="tieup_profile.html?reload" style= font-size:0.9em; data-rel="external" rel="external">Company Client Profile</a></li>
+  <li data-icon="shop"><a onclick="getbill1();" style= font-size:0.9em; data-rel="external" rel="external">View Bill</a></li>
+<li data-icon="user"><a onclick="getreg1();" style= font-size:0.9em; data-rel="external" rel="external">New Registration</a></li>
+   <li data-icon="user"><a onclick="getpass1();" style= font-size:0.9em; data-rel="external" rel="external">Change Password</a></li>
+
+   <li data-icon="user"><a href="tieup_about_us.html?reload" style= font-size:0.9em; data-rel="external" rel="external">About Us</a></li>
+    <li data-icon="info"><a href="tieup_faq.html?reload" style= font-size:0.9em; data-rel="external" rel="external">FAQ</a></li>
+  <li data-icon="phone"><a href="tieup_contact_us.html?reload" style= font-size:0.9em; data-rel="external" rel="external">Contact Us</a></li>
+
+  <li data-icon="power"><a href="index.html?reload" style= font-size:0.9em; data-rel="external" rel="external" >Logout</a></li>
+</ul>  
+</div> 
+    <div data-role="header" data-position="fixed">
+  <h3 style="text-align: center"><div id="name1"></div></h3>
+           <a data-rel="external" rel="external"  role="button" data-role="button" data-mini="true" href="#overlayPanel1" class="ui-btn-left ui-btn-corner-all ui-btn  ui-icon-bars ui-btn-icon-notext ui-shadow" title="Home" data-form="ui-icon" data-theme="a" > 
+          </a>         
+       <a onclick="gethome1();" class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext" >Home</a>
+   </div>   
+   <p>
+            <button id="startScan">Start Scan</button>
+            
+        </p>
+                           <br><br>Customer Id: <div id="results"></div>
+
+            <br><br><button id="submit" onclick="check_id();">Submit</button>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index1.js"></script>
+    </body>
+</html>
+
+

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">  
+ <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />  
+ <link rel="stylesheet" href="css/themes/my-custom-theme.css" />
+<script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/jquery.mobile-1.4.5.js"></script>  
+ <script src="js/jquery-1.7.min.js"></script>  
+<script type="text/javascript"> 
+function checkConnection(e) {
+		if (doesConnectionExist() == true) {
+//	alert("connection exists!");
+		//	redirect();
+		} else {
+			alert("connection doesn't exist!");
+		window.location.reload();
+		}
+	}
+	
+	function doesConnectionExist() {
+	    var xhr = new XMLHttpRequest();
+//var file = "member_details.php";
+	var file = "http://shopnearn.co.in/mobileapp/member_details.php";
+		var randomNum = Math.round(Math.random() * 10000);
+		
+		xhr.open('HEAD', file + "?rand=" + randomNum, false);
+	    
+	    try {
+	    	xhr.send();
+	    	
+		    if (xhr.status >= 200 && xhr.status < 304) {
+		        return true;
+		    } else {
+		        return false;
+		    }
+	    } catch (e) {
+	    	return false;
+	    }
+	}
+function getname1()
+  {
+  var queryString = new Array();
+
+          if (window.location.search.split('?').length > 1) {
+                var params = window.location.search.split('?')[1].split('&');
+                for (var i = 0; i < params.length; i++) {
+                    var key = params[i].split('=')[0];
+                    var value = decodeURIComponent(params[i].split('=')[1]);
+                    queryString[key] = value;
+                }
+            }
+
+document.getElementById('name1').innerHTML=queryString[key];
+}
+
+ $(function() {
+      $("#callAjax").click(function() {
+            var sponsorId = $.trim($("#sponsorId").val());
+            var title = $.trim($("#title").val());
+            var applicateName = $.trim($("#applicateName").val());
+            var fatherName = $.trim($("#fatherName").val());
+            var nameTitle = $.trim($("#nameTitle").val());
+            var date = $.trim($("#date").val());
+            var panNo = $.trim($("#panNo").val());
+           // var cardid = $.trim($("#cardid").val());
+            var address = $.trim($("#address").val());
+            var city_town = $.trim($("#city_town").val());
+            var district = $.trim($("#district").val());
+            var state = $.trim($("#state").val());
+            var pincode = $.trim($("#pincode").val());
+           // var phoneno = $.trim($("#phoneno").val());
+            var mobileNo= $.trim($("#mobileNo").val());
+            var email= $.trim($("#email").val());
+            //var nomineeName= $.trim($("#nomineeName").val());
+           // var relation= $.trim($("#relation").val());
+           // var payableName= $.trim($("#payableName").val());
+            //var bankName= $.trim($("#bankName").val());
+           // var branch= $.trim($("#branch").val());
+           // var city= $.trim($("#city").val());
+           // var accountNo= $.trim($("#accountNo").val());
+           // var accountType= $.trim($("#accountType").val());
+            //var ifscCode= $.trim($("#ifscCode").val());
+            var password= $.trim($("#password").val());
+            var confirm_password= $.trim($("#confirm_password").val());
+            var ccode= $.trim($("#ccode").val());
+     if(applicateName=="" ||email=="" ||ccode=="" || sponsorId==""||date==""||panNo==""||address==""||state==""||pincode==""||mobileNo==""||password==""||confirm_password=="")
+           {
+           alert("Please Enter All details properly!!");  
+           document.getElementById('sponsorId').value="";         
+           document.getElementById('password').value="";         
+           document.getElementById('confirm_password').value="";         
+           }
+           
+     else{
+            $.ajax({
+    //url: "client_entry1.php?action=member",
+      url: "http://shopnearn.co.in/mobileapp/client_entry1.php?action=member",
+           type     : 'POST',
+              data: ({sponsorId:sponsorId,title:title,nameTitle:nameTitle,applicateName:applicateName,fatherName:fatherName,date:date,panNo:panNo,address:address,city_town:city_town,district:district,state:state,pincode:pincode,mobileNo:mobileNo,email:email,password:password,confirm_password:confirm_password}),
+                  cache: false,
+                  dataType: "text",
+                  success: onSuccess
+                });
+                }
+                });
+     $("#resultLog").ajaxError(function(event, request, settings, exception) {
+          $("#resultLog").html("Error Calling: " + settings.url + "<br />HTTP Code: " + request.status);});
+                   
+function onSuccess(data)
+        {
+             var sponsorId = $.trim($("#sponsorId").val());
+            var applicateName = $.trim($("#applicateName").val());
+            var date = $.trim($("#date").val());
+            var panNo = $.trim($("#panNo").val());
+           // var cardid = $.trim($("#cardid").val());
+            var address = $.trim($("#address").val());
+            var city_town = $.trim($("#city_town").val());
+            var state = $.trim($("#state").val());
+            var pincode = $.trim($("#pincode").val());
+            var mobileNo= $.trim($("#mobileNo").val());
+            var password= $.trim($("#password").val());
+            var confirm_password= $.trim($("#confirm_password").val());
+ if(applicateName=="" || sponsorId==""||date==""||panNo==""||address==""||state==""||pincode==""||mobileNo==""||password==""||confirm_password=="")
+           {
+           alert("Please Enter All details properly!!");  
+           document.getElementById('sponsorId').value="";         
+           }
+           
+     else{
+          $("#resultLog").html("Result: " + data);
+                     alert("Client Registered Successfully...!!!!");  
+          window.location.href="home1.html?member="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+          }
+          }
+  });
+  
+  
+   function check_id(id2)
+{
+	var res="sponsorId="+id2;
+	//alert(res);
+$.ajax({
+		    		 type: "POST",
+    			//url:"sponser1.php",
+    				  url: "http://shopnearn.co.in/mobileapp/sponser.php",
+    				 data:res,
+		    		 success: function(msg){
+		   			if(msg==1 )
+			     		{
+          // alert(msg);
+					       	$('#sponsorval').fadeIn(1000);
+			      				document.getElementById('sponsorval').innerHTML="Sponser Id is NOT available"; 
+		      					$('#sponsorval').fadeOut(3500);
+												document.getElementById('sponsorId').value=""; 
+												document.getElementById('sponsorId').focus();
+				    		}
+				else
+					     	{
+														document.getElementById('sponsorval').innerHTML=msg; 
+				    			}
+				   }
+				});
+			
+	} 
+	
+	function email_add(id1)
+{
+ var res="email="+id1;
+
+$.ajax({
+				 type: "GET",
+				// url:"email_admin.php",
+				  url: "http://shopnearn.co.in/mobileapp/email_admin.php",
+				 data:res,
+				 success: function(msg){
+				 	
+      //	alert(msg);
+					if(msg==1)
+					{
+     		//	alert(msg);
+						$('#emailval').fadeIn(1000);
+							document.getElementById('emailval').innerHTML="email exists"; 
+								$('#emailval').fadeOut(3500);
+								document.getElementById('email').value=""; 
+								document.getElementById('email').focus();
+						}
+				 }
+		});
+	}
+	  
+function checkPass()
+{
+    //Store the password field objects into variables ...
+    var pass1 = document.getElementById('password');
+    var pass2 = document.getElementById('confirm_password');
+    //Store the Confimation Message Object ...
+    var message = document.getElementById('confirmMessage');
+    //Set the colors we will be using ...
+    var goodColor = "#66cc66";
+    var badColor = "#ff6666";
+    //Compare the values in the password field 
+    //and the confirmation field
+    if(pass1.value == pass2.value){
+        //The passwords match. 
+        //Set the color to the good color and inform
+        //the user that they have entered the correct password 
+        pass2.style.backgroundColor = goodColor;
+        message.style.color = goodColor;
+        message.innerHTML = "Passwords Match!"
+    }else{
+        //The passwords do not match.
+        //Set the color to the bad color and
+        //notify the user.
+        pass2.style.backgroundColor = badColor;
+        message.style.color = badColor;
+        message.innerHTML = "Passwords Do Not Match!"
+    }
+}  
+
+function phonenumber(id3)
+{
+ var res="mobileNo="+id3;
+$.ajax({
+				 type: "GET",
+			//	 url:"mobno_admin.php",
+				 				  url: "http://shopnearn.co.in/mobileapp/mobno_admin.php",
+				 data:res,
+				 success: function(msg){
+				 		if(msg==1)
+					{
+     		$('#mob').fadeIn(1000);
+							document.getElementById('mob').innerHTML="mobno exists"; 
+								$('#mob').fadeOut(3500);
+								document.getElementById('mobileNo').value=""; 
+								document.getElementById('mobileNo').focus();
+						}
+				 }
+		});
+	}
+	
+	function numbersonly(myfield, e, dec)
+{
+  	var specialKeys = new Array();
+        specialKeys.push(8); //Backspace
+           var keyCode = e.which ? e.which : e.keyCode
+            var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+         //   document.getElementById("error").style.display = ret ? "none" : "inline";
+            return ret;
+}
+function lettersOnly(evt) {
+        evt = (evt) ? evt : event;
+        var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode :
+          ((evt.which) ? evt.which : 0));
+        if (charCode == 32)
+            return true;
+        if (charCode > 31 && (charCode < 65 || charCode > 90) &&
+          (charCode < 97 || charCode > 122)) {
+            return false;
+        }
+        else
+            return true;
+    }
+    
+    function check(){
+ var pass1 = document.getElementById('password').value;
+    var pass2 = document.getElementById('confirm_password').value;
+    if(pass1!=pass2)
+    {
+    alert("Please Check Password");
+    document.getElementById('password').value="";
+    document.getElementById('confirm_password').value="";
+    }
+    }
+    function msg_send()
+{
+	 var mobile=document.getElementById('mobileNo').value;
+	 var cmatch=document.getElementById('cmatch').value;
+ var res="mobile="+mobile+"&cmatch="+cmatch;
+//alert(res);
+if(mobile=="" || cmatch=="")
+{
+alert("Please Enter Correct Moible No...!!");
+}
+else
+{
+$.ajax({
+				 type: "GET",
+				 url:"http://shopnearn.co.in/mobileapp/msg_send_cof.php",
+				 data:res,
+				 success: function(msg){
+				 	
+    //	alert(msg);
+					if(msg==1)
+					{
+					alert("Message Send");
+     	//	alert(msg);
+					}
+				 }
+		});
+	}
+}
+
+$(function() {
+      $("#mobileNo").click(function() {
+            $.ajax({
+     url: "http://shopnearn.co.in/mobileapp/code.php",
+  // url: "http://shopnearn.co.in/mobileapp/billno.php",
+         type     : 'POST',
+              data: ({}),
+                  cache: false,
+                  dataType: "text",
+                  success: onSuccess
+                });
+                });
+     $("#resultLog").ajaxError(function(event, request, settings, exception) {
+          $("#resultLog").html("Error Calling: " + settings.url + "<br />HTTP Code: " + request.status);});
+          
+function onSuccess(data)
+        {
+        // alert(data);
+         document.getElementById('cmatch').value=data;
+          }
+  });  
+   
+   function checkcode()
+   {
+   	 var cmatch=document.getElementById('cmatch').value;
+   	 var ccode=document.getElementById('ccode').value;
+   	 if(cmatch!=ccode)
+   	 {
+     alert("Please Enter Correct Code...!!!")   	 
+     document.getElementById('ccode').value="";
+				 document.getElementById('ccode').focus();
+   	 }
+   	 else
+   	 {}
+      }
+    
+   
+function getreg1()
+	{
+	window.location.href="client_registration1.html?member="+localStorage.getItem("shopname");
+	} 
+	
+	function getpass1()
+	{
+	window.location.href="change_password.html?memember="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+	} 
+	function gethome1()
+	{
+	window.location.href="tieup_bill_new.html?memember="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+	} 
+		function getbill1()
+	{
+	window.location.href="view_tbill.html?memember="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+	} 
+</script>
+</head>
+<body>
+<!--......client Registration Form........-->
+<div data-role="page" id="member_reg_new">
+<div data-role="panel" id="overlayPanel1" data-display="overlay" data-rel="back"> 
+    <ul data-role="listview">
+    <li data-icon="user"><a href="tieup_profile.html?reload" style= font-size:0.9em; data-rel="external" rel="external">Company Client Profile</a></li>
+  <li data-icon="shop"><a onclick="getbill1();" style= font-size:0.9em; data-rel="external" rel="external">View Bill</a></li>
+<li data-icon="user"><a onclick="getreg1();" style= font-size:0.9em; data-rel="external" rel="external">New Registration</a></li>
+   <li data-icon="user"><a onclick="getpass1();" style= font-size:0.9em; data-rel="external" rel="external">Change Password</a></li>
+
+   <li data-icon="user"><a href="tieup_about_us.html?reload" style= font-size:0.9em; data-rel="external" rel="external">About Us</a></li>
+    <li data-icon="info"><a href="tieup_faq.html?reload" style= font-size:0.9em; data-rel="external" rel="external">FAQ</a></li>
+  <li data-icon="phone"><a href="tieup_contact_us.html?reload" style= font-size:0.9em; data-rel="external" rel="external">Contact Us</a></li>
+
+  <li data-icon="power"><a href="index.html?reload" style= font-size:0.9em; data-rel="external" rel="external" >Logout</a></li>
+</ul> 
+</div> 
+
+   <div data-role="header" data-position="fixed">
+    <body onload="getname1();">
+       <h3 style="text-align: center"><div id="name1"></div></h3>
+           <a data-rel="external" rel="external"  role="button" data-role="button" data-mini="true" href="#overlayPanel1" class="ui-btn-left ui-btn-corner-all ui-btn  ui-icon-bars ui-btn-icon-notext ui-shadow" title="Home" data-form="ui-icon" data-theme="a" > 
+          </a>         
+       <a onclick="gethome1();" class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext" >Home</a>
+           </body> </div>
+           
+    <div data-role="main" class="ui-content">
+<br></br><div align="middle"><h3>Client Registration Form</h3></div>
+<form name="contact_form" class="contact_form" method="post">
+<div class="ui-field-contain">
+      <label for="sponsorId"><font color="red">*</font>Sales Promoter ID:</label>
+      <input type="text" name="sponsorId" id="sponsorId" onblur="check_id(this.value);" required> <div id="sponsorval"></div>
+      </div>
+      <div class="ui-field-contain">
+
+      <label for="title">Title:</label>
+         <fieldset  data-role="controlgroup" data-type="horizontal"> 
+     <select name="title" id="title" required>
+    <option value="Mr." selected="">Mr.</option><option value="Mrs">Mrs</option><option value="Ms.">Ms.</option><option value="Dr.">Dr.</option>
+                  </select>
+                  </fieldset> 
+      <label for="applicateName"><font color="red">*</font>Applicant Name:</label>
+      <input type="text" name="applicateName" id="applicateName"  onkeypress="return lettersOnly(event)" required>
+            </div>
+ <div class="ui-field-contain"> 
+ <label for="nameTitle">Father/Husband's Name:</label>
+   <fieldset  data-role="controlgroup" data-type="horizontal"> 
+ <select name="nameTitle" id="nameTitle" required>
+                <option value="S/O" selected="">S/O</option><option value="W/O">W/O</option><option value="D/O">D/O</option>
+            </select>          </fieldset> 
+ <input id="fatherName" type="text" onkeypress="return lettersOnly(event)"  name="fatherName" >
+   </div> 
+   <div class="ui-field-contain">
+      <label for="day"><font color="red">*</font>Date Of Birth:</label>
+       <input type="date" name="date" id="date" required>
+       </div>
+               <div class="ui-field-contain">
+      <label for="panNo"><font color="red">*</font>Pan No:</label>
+      <input type="text" name="panNo" id="panNo" maxlength="10" required>
+      </div>
+        <!-- <div class="ui-field-contain">
+      <label for="cardid">Card ID:</label>
+      <input type="text" name="cardid" id="cardid" maxlength="16" required>
+      </div>-->
+         <div class="ui-field-contain">
+      <label for="address"><font color="red">*</font>Address:</label>
+      <textarea name="address" id="address"  required></textarea>
+      </div>
+         <div class="ui-field-contain">
+      <label for="city_town">City/Town :</label>
+      <input type="text" name="city_town" id="city_town" onkeypress="return lettersOnly(event)" required>
+      </div>
+         <div class="ui-field-contain">
+      <label for="district"><font color="red">*</font>District :</label>
+      <input type="text" name="district" id="district" onkeypress="return lettersOnly(event)" required>
+      </div>
+         <div class="ui-field-contain">
+      <label for="state">State:</label>
+    <select name="state" id="state" required >
+      <option value="" >--------Select State--------</option><option value="Andaman And Nicobar">Andaman And Nicobar</option>
+				 <option value="Andhra Pradesh">Andhra Pradesh</option><option value="Arunachal Pradesh">Arunachal Pradesh</option><option value="Assam">Assam</option>
+				 <option value="Bihar">Bihar</option><option value="Chandigarh">Chandigarh</option><option value="Chattisgarh">Chattisgarh</option>
+				 <option value="Dadar Nagar Haweli">Dadar Nagar Haweli</option><option value="Daman And Diu">Daman And Diu</option><option value="Delhi">Delhi</option>
+				 <option value="Goa">Goa</option><option value="Gujarat">Gujarat</option><option value="Haryana">Haryana</option>
+				 <option value="Himanchal Pradesh">Himanchal Pradesh</option><option value="Jammu And Kashmir">Jammu And Kashmir</option>
+				 <option value="Jharkhand">Jharkhand</option><option value="Karnataka">Karnataka</option><option value="Kerala">Kerala</option>
+				 <option value="Lakshadweep">Lakshadweep</option><option value="Madhya Pradesh">Madhya Pradesh</option><option value="Maharastra" selected="">Maharashtra</option>
+				 <option value="Manipur">Manipur</option><option value="Meghalaya">Meghalaya</option><option value="Mizoram">Mizoram</option><option value="Nagaland">Nagaland</option><option value="Orissa">Orissa</option><option value="Pondicherry">Pondicherry</option><option value="Punjab">Punjab</option><option value="Rajasthan">Rajasthan</option><option value="Sikkim">Sikkim</option><option value="Tamilnadu">Tamilnadu</option><option value="Telangana">Telangana</option><option value="Tripura">Tripura</option>
+				 <option value="Uttar Pradesh">Uttar Pradesh</option><option value="Uttaranchal">Uttaranchal</option><option value="West Bengal">West Bengal</option>
+            </select>
+            </div>
+         <div class="ui-field-contain">
+      <label for="pincode"><font color="red">*</font>PinCode :</label>
+      <input id="pincode" type="tel" maxlength="6" onkeypress="if(event.keyCode!=9) return numbersonly(this, event);"   name="pincode" required>
+</div>
+         <!--<div class="ui-field-contain"> 
+ <label for="phoneno">Primary Phone No(with code) :</label>
+  <input id="phoneno" type="tel" onkeypress="if(event.keyCode!=9) return numbersonly(this, event);"  name="phoneno" >
+</div>-->
+         <div class="ui-field-contain"> 
+      <label for="mobileNo"><font color="red">*</font> Mobile No:</label>
+        <input  id="mobileNo" type="tel" maxlength="10" name="mobileNo" onblur="phonenumber(this.value);" onkeypress="if(event.keyCode!=9) return numbersonly(this, event);"  required>
+<input type="hidden" id="cmatch" name="cmatch"> <div id="mob"></div>   
+      </div>
+	   
+	   <button type="button" class="btn btn-primary" id="confirm" onclick="msg_send()">Confirm</button>
+	   
+    </div>
+      <div class="ui-field-contain"> 
+      <label for="code"><font color="red">*</font> Enter Confirm code:</label>
+
+        <input class="form-control" id="ccode" type="tel" maxlength="4" name="ccode"  onkeypress="if(event.keyCode!=9) return numbersonly(this, event);"  required>
+      </div>
+        <!--  <div class="ui-field-contain">  
+  <label for="mobileNo">Mobile No:</label>
+  <input id="mobileNo" type="tel" maxlength="10" name="mobileNo" onblur="phonenumber(this.value)"  onkeypress="if(event.keyCode!=9) return numbersonly(this, event);"  required>
+<div id="mob"></div>
+</div> -->
+         <div class="ui-field-contain"> 
+ <label for="email"><font color="red">*</font> Email:</label>
+ <input id="email" type="text" name="email"  onblur="email_add(this.value);" onclick="checkcode();" required><div id="emailval">
+    </div>
+</div>
+        <!-- <div class="ui-field-contain">      
+      <label for="nomineeName"> Nominee Name :</label>
+   <input  id="nomineeName" type="text" name="nomineeName" onkeypress="return lettersOnly(event)" >
+</div>
+         <div class="ui-field-contain">    
+    <label for="relation">Relation :</label>
+   <input  id="relation" type="text" name="relation" onkeypress="return lettersOnly(event)" >
+</div>
+         <div class="ui-field-contain">     
+     <label for="payableName">Payable Name :</label>
+   <input  id="payableName" type="text" name="payableName" onkeypress="return lettersOnly(event)"  >
+</div>
+         <div class="ui-field-contain">    
+    <label for="bankName">Bank Name:</label>
+
+            <select name="bankName" id="bankName">
+                <option value="" selected="">--------Select Bank Name--------</option><option value="ABHYUDAYA CO-OP BANK LTD">ABHYUDAYA CO-OP BANK LTD</option>
+				<option value="ABN AMRO BANK">ABN AMRO BANK</option><option value="ABU DHABI COMMERCIAL BANK">ABU DHABI COMMERCIAL BANK</option>
+				<option value="AHMEDABAD MERCANTILE CO-OPERATIVE BANK LTD.">AHMEDABAD MERCANTILE CO-OPERATIVE BANK LTD.</option>
+				<option value="ALLAHABAD BANK">ALLAHABAD BANK</option><option value="ANDHRA BANK">ANDHRA BANK</option><option value="AXIS BANK">AXIS BANK</option>
+				<option value="AXIS BANK LTD">AXIS BANK LTD</option><option value="BANK OF AMERICA">BANK OF AMERICA</option>
+				<option value="BANK OF BAHARAIN AND KUWAIT BSC">BANK OF BAHARAIN AND KUWAIT BSC</option><option value="BANK OF BARODA">BANK OF BARODA</option>
+				<option value="BANK OF CEYLON">BANK OF CEYLON</option><option value="BANK OF INDIA">BANK OF INDIA</option>
+				<option value="BANK OF MAHARASHTRA">BANK OF MAHARASHTRA</option><option value="BANK OF RAJASTHAN LTD">BANK OF RAJASTHAN LTD</option
+				<option value="BARCLAYS BANK PLC">BARCLAYS BANK PLC</option><option value="BNP PARIBAS">BNP PARIBAS</option>
+				<option value="CALYON BANK">CALYON BANK</option><option value="CANARA BANK">CANARA BANK</option>
+				<option value="CATHOLIC SYRIAN BANK LTD">CATHOLIC SYRIAN BANK LTD</option><option value="CENTRAL BANK OF INDIA">CENTRAL BANK OF INDIA</option>
+				<option value="CHINATRUST COMMERCIAL BANK LTD">CHINATRUST COMMERCIAL BANK LTD</option><option value="CHO HUNG BANK">CHO HUNG BANK</option>
+				<option value="CITI BANK N.A">CITI BANK N.A</option><option value="CITIZEN CREDIT CO-OPERATIVE BANK LTD">CITIZEN CREDIT CO-OPERATIVE BANK LTD</option>
+				<option value="CITY UNION BANK LTD">CITY UNION BANK LTD</option><option value="CORPORATION BANK">CORPORATION BANK</option>
+				<option value="DBS BANK LTD">DBS BANK LTD</option><option value="DELHI CO-OPERATIVE BANK LTD">DELHI CO-OPERATIVE BANK LTD</option>
+				<option value="DENA BANK">DENA BANK</option><option value="DEPOSIT INS AND CR GUAR CORPN">DEPOSIT INS AND CR GUAR CORPN</option>
+				<option value="DEVELOPMENT CREDIT BANK LIMITED">DEVELOPMENT CREDIT BANK LIMITED</option>
+				<option value="DOMBIVLI NAGARI SAHAKARI BANK LIMITED">DOMBIVLI NAGARI SAHAKARI BANK LIMITED</option><option value="FEDERAL BANK LTD">FEDERAL BANK LTD</option><option value="HDFC BANK">HDFC BANK</option><option value="ICICI BANK">ICICI BANK</option><option value="IDBI BANK LTD">IDBI BANK LTD</option><option value="INDIAN BANK">INDIAN BANK</option><option value="INDIAN OVERSEAS BANK">INDIAN OVERSEAS BANK</option><option value="INDUSIND BANK LTD">INDUSIND BANK LTD</option><option value="ING VYSYA BANK LTD">ING VYSYA BANK LTD</option><option value="JANAKALYAN SAHAKARI BANK LTD">JANAKALYAN SAHAKARI BANK LTD</option><option value="JP MORGAN CHASE BANK, N.A.">JP MORGAN CHASE BANK, N.A.</option><option value="KALYAN JANATA SAH BANK LTD">KALYAN JANATA SAH BANK LTD</option><option value="KAPOL CO-OP BANK LTD">KAPOL CO-OP BANK LTD</option><option value="KARNATAKA BANK LTD">KARNATAKA BANK LTD</option><option value="KARUR VYSYA BANK">KARUR VYSYA BANK</option><option value="KOTAK MAHINDRA BANK">KOTAK MAHINDRA BANK</option><option value="KRUNG THAI BANK PCL">KRUNG THAI BANK PCL</option><option value="LAKSHMI VILAS BANK">LAKSHMI VILAS BANK</option><option value="LORD KRISHNA BANK">LORD KRISHNA BANK</option><option value="MAHARASHTRA STATE CO-OP BANK LTD">MAHARASHTRA STATE CO-OP BANK LTD</option><option value="MANDVI CO-OP BANK LTD">MANDVI CO-OP BANK LTD</option><option value="MASHREQBANK PSC">MASHREQBANK PSC</option><option value="MIZUHO CORPORATE BANK LTD">MIZUHO CORPORATE BANK LTD</option><option value="NEW INDIA CO-OP BANK LTD">NEW INDIA CO-OP BANK LTD</option><option value="NUTAN NAGARIK SAHAKARI BANK LTD">NUTAN NAGARIK SAHAKARI BANK LTD</option><option value="OMAN INTERNATIONAL BANK">OMAN INTERNATIONAL BANK</option><option value="ORIENTAL BANK OF COMMERCE">ORIENTAL BANK OF COMMERCE</option><option value="PARSIK JANATA SAHAKARI BANK LTD">PARSIK JANATA SAHAKARI BANK LTD</option>
+				<option value="PUNJAB AND MAHARASHTRA CO-OP BANK LTD">PUNJAB AND MAHARASHTRA CO-OP BANK LTD</option><option value="PUNJAB AND SIND BANK">PUNJAB AND SIND BANK</option><option value="PUNJAB NATIONAL BANK">PUNJAB NATIONAL BANK</option><option value="RAJKOT NAGRIK SAHAKARI BANK LTD">RAJKOT NAGRIK SAHAKARI BANK LTD</option><option value="RESERVE BANK OF INDIA">RESERVE BANK OF INDIA</option><option value="SHINHAN BANK">SHINHAN BANK</option><option value="SOCIETE GENERALE">SOCIETE GENERALE</option><option value="SOUTH INDIAN BANK LTD">SOUTH INDIAN BANK LTD</option><option value="STANDARD CHARTERED BANK">STANDARD CHARTERED BANK</option><option value="STATE BANK OF BIKANER AND JAIPUR">STATE BANK OF BIKANER AND JAIPUR</option><option value="STATE BANK OF HYDERABAD">STATE BANK OF HYDERABAD</option><option value="STATE BANK OF INDIA">STATE BANK OF INDIA</option><option value="STATE BANK OF INDORE">STATE BANK OF INDORE</option><option value="STATE BANK OF MAURITUS">STATE BANK OF MAURITUS</option><option value="STATE BANK OF MYSORE">STATE BANK OF MYSORE</option><option value="STATE BANK OF PATIALA">STATE BANK OF PATIALA</option><option value="STATE BANK OF TRAVANCORE">STATE BANK OF TRAVANCORE</option><option value="SYNDICATE BANK">SYNDICATE BANK</option><option value="TAMILNAD MERCANTILE BANK LTD">TAMILNAD MERCANTILE BANK LTD</option><option value="THANE BHARAT SAHAKARI BANK LTD">THANE BHARAT SAHAKARI BANK LTD</option><option value="THANE JANATA SAHKARI BANK LTD">THANE JANATA SAHKARI BANK LTD</option><option value="THE BANK OF NOVA SCOTIA">THE BANK OF NOVA SCOTIA</option><option value="THE BANK OF RAJASTHAN LTD">THE BANK OF RAJASTHAN LTD</option><option value="THE BANK OF TOKYO MITSUBISHI LTD">THE BANK OF TOKYO MITSUBISHI LTD</option><option value="THE BHARAT CO-OPERATIVE BANK LTD">THE BHARAT CO-OPERATIVE BANK LTD</option><option value="THE COSMOS CO-OPERATIVE BANK LTD">THE COSMOS CO-OPERATIVE BANK LTD</option><option value="THE DHANALAKSHMI BANK LTD">THE DHANALAKSHMI BANK LTD</option><option value="THE FEDERAL BANK LTD">THE FEDERAL BANK LTD</option><option value="THE GREATER BOMBAY CO-OP BANK LTD">THE GREATER BOMBAY CO-OP BANK LTD</option><option value="THE JAMMU AND KASHMIR BANK LTD">THE JAMMU AND KASHMIR BANK LTD</option><option value="THE KALUPUR COMM COOP.BANK LTD">THE KALUPUR COMM COOP.BANK LTD</option><option value="THE NANITAL CO-OPERATION BANK LTD">THE NANITAL CO-OPERATION BANK LTD</option><option value="THE NORTH KANARA G.S.B. CO-OP. BANK LTD">THE NORTH KANARA G.S.B. CO-OP. BANK LTD</option>
+				<option value="THE RATNAKAR BANK LTD">THE RATNAKAR BANK LTD</option><option value="THE SANGLI BANK LTD">THE SANGLI BANK LTD</option>
+				<option value="THE SARASWAT CO-OPERATIVE BANK LTD">THE SARASWAT CO-OPERATIVE BANK LTD</option><option value="THE SHAMRAO VITHAL CO -OPERATIVE BANK LTD">THE SHAMRAO VITHAL CO -OPERATIVE BANK LTD</option>
+				<option value="THE TAMIL NADU STATE APEX CO-OPERATIVE BANK LTD">THE TAMIL NADU STATE APEX CO-OPERATIVE BANK LTD</option>
+				<option value="UCO BANK">UCO BANK</option><option value="UNION BANK OF INDIA">UNION BANK OF INDIA</option><option value="VIJAYA BANK">VIJAYA BANK</option>
+				<option value="WEST BENGAL STATE CO-OP BANK LTD">WEST BENGAL STATE CO-OP BANK LTD</option><option value="YES BANK LTD">YES BANK LTD</option>
+            </select>
+</div>
+         <div class="ui-field-contain">           
+            <label for="branch"> Branch :</label>
+  <input id="branch" type="text" name="branch" onkeypress="return lettersOnly(event)" >
+</div>
+         <div class="ui-field-contain">      
+      <label for="city"> City :</label>
+  <input  id="city" type="text" name="city" onkeypress="return lettersOnly(event)" >
+</div>
+         <div class="ui-field-contain">     
+     <label for="accountNo"> Account No:</label>
+  <input  id="accountNo" type="tel" name="accountNo" onkeypress="if(event.keyCode!=9) return numbersonly(this, event);">
+</div>
+         <div class="ui-field-contain"> 	
+ 	<label for="accountType">Account type:</label>
+        <select name="accountType" id="accountType" class="form-control">
+                <option value="" selected="">--Select Account Type--</option><option value="Saving A/C">Saving A/C</option>
+				<option value="Current A/C">Current A/C</option>
+				<option value="OD A/C">OD A/C</option><option value="CC A/C">CC A/C</option>
+            </select>
+</div>
+         <div class="ui-field-contain">     
+     <label for="ifscCode"> IFSC Code No :</label>
+  <input  id="ifscCode" type="text" name="ifscCode"  maxlength="11" >
+</div>-->
+         <div class="ui-field-contain">       
+        <label for="password"><font color="red">*</font>Password :</label>
+
+        <input  id="password" type="password" name="password" placeholder="4 digit number only" title="4 digit number only" maxlength="4" required>
+     </div>
+         <div class="ui-field-contain">
+      <label for="confirm_password"> <font color="red">*</font>Confirm Password :</label>
+
+        <input id="confirm_password" type="password" onkeyup="checkPass(); return false;" name="confirm_password" placeholder="4 digit number only" title="4 digit number only" maxlength="4" required>
+</div>
+         <div class="ui-field-contain">
+     <label> <input type="checkbox" value="A" onclick="check();" required>&nbsp;I agree the company's</label><a href="#terms" data-rel="popup"  data-transition="flip">Terms and conditions</a>
+</div>    
+     <a  id="callAjax" data-transition="slide" data-theme="b"  class="ui-btn" data-rel="external" rel="external">Submit</a>
+    </form>
+
+<div data-role="popup" id="terms">
+<a href="#member_reg_new" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+
+     <p><b> कंपनीचे नियम व अटी </b></p>
+
+<p style="word-wrap: break-word !important;white-space: normal !important">
+१) गुरुप्रसाद मल्टीट्रेड मार्केटिंग प्रा . लि. हि कंपनी भारत सरकार कंपनी कायदा १९५६ अंतर्गत  जानेवारी २०१३ मध्ये नोंदणीकृत कंपनी आहे. 
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+२)  गुरुप्रसाद मल्टी-ट्रेड  मार्केटिंग  प्रा. लि . कंपनीमद्धे १८ वर्षावरील  कोणत्याही भारतीय नागरिकांना  स्वतः च्या निर्णयाने कंपनीचे नियम व अटी  मान्य असल्यास कंपनीला आवश्यक असणारी ग्राहकांच्या संदर्भातील माहिती , जसे नाव , पत्ता ,भ्रमणध्वनी ( मोबाईल) क्रमांक , ओळखपत्र , पॅन कार्ड क्रमांक इत्यादी  माहिती असलेले  नोंदनि पत्रक (फॉर्म ) प्रत्यक्ष किंवा ऑनलाईन पूर्णपणे भरून स्वाक्षरी करेल , त्यानंतर त्याला कंपनीचा नोंदणीकृत ग्राहक क्रमांक देण्यात येईल. 
+ </p><p style="word-wrap: break-word !important;white-space: normal !important">
+३)  गुरुप्रसाद मल्टी-ट्रेड  मार्केटिंग  प्रा. लि . कंपनी आपल्या ग्राहकांना ग्राहक ओळख क्रमांक असलेले खास कार्ड देईल , त्या कार्डाचा  वापर कंपनीने उपलब्ध करून दिलेली उत्पादने खेरेदी  केल्यानंतर लॉयल्टी  कॅश  बॅक ऑफर फायदा मिळवण्याकरिता होईल. उत्पादने खरेदी करताना कार्ड दाखवणे जरुरीचे ( बंधन कारक ) राहील, तसेच  या कार्डचा वापर इतर कोणत्याही कामासाठी व इतर कोणत्याही कंपनी व संस्थेमध्ये संदर्भ वस्तू अथवा ओळखपत्र  म्हणून वापर करता येणार नाही.   
+ </p><p style="word-wrap: break-word !important;white-space: normal !important">
+४)  गुरुप्रसाद मल्टी-ट्रेड  मार्केटिंग  प्रा. लि . कंपनीचे ग्राहक ओळख क्रमांक कार्ड , हे कंपनीच्या 
+स्वतःच्या मालकीचे ठेवण्याचा अधिकार राखून ठेवत आहे , हे कार्ड कंपनीचे  कामगार , अधिकारी, प्रतिनिधी असल्याचे ओळखपत्र नाही . हे कार्ड अशा कोणत्याही कारणाकरिता वापरता  येणार नाही . सदर कार्डाचा एखाद्या ग्राहकाने गैरवापर केल्यास त्या ग्राहकाची नोंदणी रद्द करण्याचा तसेच नियमित ग्राहक म्हणून देण्यात येणारे सर्व फायदे स्तगीत करण्याचा अधिकार कंपनी राखून ठेवत आहे . तसेच या कार्डाचा इतरत्र गैरवापर केल्याबद्दल कोणत्याही प्रकारची कायदेशीर कारवाही झाल्यास कंपनी जबाबदार राहणार नाही .  
+ </p><p style="word-wrap: break-word !important;white-space: normal !important">
+५) गुरुप्रसाद मल्टी-ट्रेड  मार्केटिंग  प्रा. लि . कंपनीचे कार्ड हे कोणत्याही व्यवहाराची पोचपावती
+ नाही ते ग्राहकांना मोफत देण्यात येणार आहे , त्यामुळे फक्त कार्ड धारक असल्याने लॉयल्टी  कॅश  बॅक मिळणार नाही. लॉयल्टीकॅश बॅक  ते त्यांनी केलेल्या खरेदी व कंपनीच्या विक्री आणि 
+एकूण व्यवसाय वृद्धीवर सर्वस्वी अवलंबून आहे व राहील . 
+ </p><p style="word-wrap: break-word !important;white-space: normal !important">
+६) गुरुप्रसाद  मल्टीट्रेड मार्केटिंग प्रा . लि. हि कंपनी कोणत्याही प्रकारची मल्टीलेवल मार्केटिंग (MLM) , नेटवर्क मार्केटिंग , डायरेक्ट मार्केटिंग ,मुदत ठेव योजना , मासिक बचत योजना , पैसे व्याजाने देणे-घेणे ,मोकळ्या जमिनीचे ( बिगर शेती) विक्री खरेदी व्यवहार अशा कोणत्याही प्रकारची  योजना राबवत नाही . 
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+७)  गुरुप्रसाद  मल्टीट्रेड मार्केटिंग प्रा . लि च्या अधिकृत सही शिक्यानिशी असलेल्या लेखी  परिपत्रकाशिवाय प्रसिद्ध केलेली  कोणतीही लिखित अथवा तोंडी स्वरूपातील माहिती किवा पत्रक ग्राह्य धरले जाणार नाही . 
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+८) गुरुप्रसाद  मल्टीट्रेड मार्केटिंग प्रा . लि हि कंपनी कोणत्याही प्रकारच्या उत्पादनाच्या खरेदी अथवा विक्री च्या मोबदल्यात , अथवा विक्रेय प्रवर्तनासाठी दिले जाणारे कमिशन , ठोस रकमेच्या स्वरुपात अथवा ठराविक मुदतीत देण्याचे कोणतेही लिखित अथवा तोंडी  आश्वासन देत नाही व दिलेले नाही .
+ </p><p style="word-wrap: break-word !important;white-space: normal !important">
+९) नियमित ग्राहकांना दिला जाणारा मोबदला हा त्यांनी केलेल्या उत्पादने  खरेदी  व  कंपनीच्या उत्पादने विक्री आणि एकूण व्यवसाय वृद्धीवर सर्वस्वी अवलंबून आहे व रहिल. 
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+१०) सदर संकल्पनेचा फायदा हा गुरुप्रसाद मल्टीट्रेड मार्केटिंग प्रा . लि .कंपनीच्या नोंदणीकृत ग्राहकांनाच मिळू शकेल . तसेच ग्राहकांची नोंदणी  निशुल्क (मोफत ) करून घेण्यात येईल . ग्राहकांनी नोंदणी करणे हे पूर्णपणे त्यांच्या स्वतःच्या इच्छेवर अवलंबून असेल .
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+११) गुरुप्रसाद मल्टीट्रेड मार्केटिंग प्रा . लि.कंपनी अंतर्गत ग्राहक नोंदणीकृत करून घेण्याचे सर्वाधिकार कंपनीकडे राहतील .
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+
+१२) कंपनीने उपलब्ध करून दिलेल्या कोणत्याही उत्पादनाचे व सेवेचे सदर ग्राहक कंपनीच्या व्यवसायवृद्धीसाठी दुसऱ्या ग्राहकांचा संदर्भ देवून त्यांना कंपनी बरोबर संलग्न करेल त्यावेळीपासून तो ग्राहक विक्रिय प्रवर्तक गणला जाईल . अशा प्रकारे कंपनीच्या विक्री वृद्धी प्रवर्तनासाठी ग्राहकाला कंपनीच्या  नियमानुसार कमिशन देण्यात येईल . 
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+१३)  गुरुप्रसाद मल्टीट्रेड मार्केटिंग प्रा . लि.कंपनी सध्या प्रचलित बाजारपेठेतील व्यवसाय करण्याच्या पद्धती जसे किरकोळ विक्री पद्धत व ऑन-लाईन पद्धत या प्रमाणे ग्राहकांना उत्पादने उपलब्ध करून देणार आहे . 
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+१४) कंपनीने उपलब्ध करून दिलेली कोणतीही वस्तू व उत्पादने खरेदी केल्यावरच सदर कंपनीचा ग्राहक ओळख क्रमांक कार्ड देण्यात येईल. 
+ </p><p style="word-wrap: break-word !important;white-space: normal !important">
+१५) गुरुप्रसाद मल्टीट्रेड मार्केटिंग प्रा . लि. कंपनीने उपलब्ध करून दिलेल्या कोणत्याही उत्पादनाची कमीत कमी ५०० रुपये किंमतीपर्यंतची एकूण खरेदी महिन्याभरात करणे आवश्यक आहे , सदर ५०० रुपये व त्यावरील रकमेच्या उत्पादनाच्या खरेदीवर ५% किंवा अधिक  आकर्षक लॉयल्टी  कॅश  बॅक  ऑफर म्हणून देण्यात येईल .
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+१६) ग्राहकांनी कंपनीने उपलब्ध करून दिलेल्या कोणत्याही उत्पादनाची  खरेदी केल्यानंतर देण्यात येणारी लॉयल्टी हि  कॅश  बॅक किंवा लॉयल्टी  पोइंट  रिडीमशन यापैकी एका स्वरुपात देण्यात येईल , हि कॅशबॅक रक्कम ग्राहकांना त्यांनी उत्पादने खरेदी केलेल्या दिवसाच्या तारीख व वेळ या अनुक्रमांकाप्रमाणे देण्यात येईल , अशा प्रकारे  कॅशबॅक मिळण्याच्या पद्धतीला ग्राहक ग्राहक क्वालिफाइड  होणे  असे संबोधण्यात येईल . 
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+
+१७) ग्राहकाला कॅशबॅक  व  विक्री प्रवर्तन कमिशन  लागू झाल्यानंतर आलेल्या रकमेतून १०% टीडीएस आणि २% अॅड्मीन  चार्ज वजा करून शिल्लक रक्कम ग्राहकांच्या बँक खात्यात थेट जमा करण्यात येईल. 
+
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+१८)  कंपनीने उपलब्ध करून दिलेले कोणतेही उत्पादन, वस्तू , सेवा हि अधिकतम  विक्री मुल्य सर्व करांसहित असलेल्या (M.R.P) किंमतीवर विक्री करेल, कोणत्याही प्रकारचे सेल , सवलत अथवा स्कीम  या प्रमाणे विक्री करणार नाही , तसेच कोणत्याही प्रवर्तकाला तसे करण्याची परवानगी नाही . 
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+१९) कंपनीने विक्रीकरता उपलब्धकारून दिलेल्या वस्तूंची व उत्पादनाची विक्री पश्चात सेवा , उत्पादनातील त्रुटी , उत्पादनाचा दर्जा , वॉरंटी  या सर्वांना व अशा तत्सम इतर गोष्टींना उत्पादक जबाबदार असतील .  
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+२०) ग्राहकांकडून घेण्यात येणारी त्यांच्या बद्दलची वैयत्यिक माहिती हि कंपनीच्या प्रशासकीय कामासाठी उपयोगात आणण्यात येईल. तसेच सदर माहिती मद्धे काही आवश्यक बदल करायचा असल्यास ग्राहकाला कंपनीच्या ऑनलाईन ग्राहक खात्यामध्ये जाऊन पाहू शकतो तसेच स्वतः बदल करू शकतो  
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+
+२१) कोणतीही पूर्वसूचना  न देता कंपनीच्या अटी आणि नियमांमध्ये बदल करण्याचा संपूर्ण अधिकार कंपनी स्वतःकडे राखून ठेवत आहे  . तसेच केलेले बदल कंपनी  ग्राहकांच्या वेळोवेळी  निदर्शनास आणून देण्यात येतील  . 
+</p>
+    </div>
+        </div>
+</div>
+    <!--......client Registration Form End........-->
+</body>
+</html>

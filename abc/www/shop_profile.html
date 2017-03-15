@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">  
+ <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />  
+ <link rel="stylesheet" href="css/themes/my-custom-theme.css" />
+<script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/jquery.mobile-1.4.5.js"></script>  
+ <script src="jss/jquery-1.4.4.min.js"></script>  
+<script type="text/javascript" charset="utf-8">
+$(function() {
+     $(document).ready(function() {
+      
+         $.ajax({
+   url: "http://shopnearn.co.in/mobileapp/NEWREG.php",
+     // url: "http://shopnearn.co.in/mobileapp/mobno.php",
+           type     : 'GET',
+             data: ({}),
+                  cache: false,
+                  dataType: "text",
+                  success: onSuccess
+                });});
+    $("#resultLog").ajaxError(function(event, request, settings, exception) {
+          $("#resultLog").html("Error Calling: " + settings.url + "<br />HTTP Code: " + request.status);
+        });
+function onSuccess(data)
+        {
+     // alert(data);
+
+
+            $("#resultLog").html("Result: " + data);
+
+            	 	//		window.location.href="mobno1.html?member="+encodeURIComponent(data)+"|"+myArray[0]+"|"+myArray[1];
+document.getElementById('myTable').innerHTML=data;
+        }
+  });
+  function getreg1()
+	{
+	window.location.href="client_registration.html?member="+localStorage.getItem("shopname");
+	} 
+	
+	function getpass1()
+	{
+	window.location.href="change_password1.html?memember="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+	} 
+	function gethome1()
+	{
+	window.location.href="shop_bill_new.html?memember="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+	} 
+		function getbill1()
+	{
+	window.location.href="view_sbill.html?memember="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+	} 
+</script>
+        </head>
+         <style>
+td {
+    border-bottom: 1px solid #d6d6d6;
+}
+
+tr:nth-child(even) {
+    background: #e9e9e9;
+}
+</style>
+<body>
+
+<div data-role="page" id="pageone">
+  <div data-role="panel" id="overlayPanel1" data-display="overlay" data-rel="back"> 
+    <ul data-role="listview">
+    <li data-icon="user"><a href="shop_profile.html?reload" style= font-size:0.9em; data-rel="external" rel="external">Company Client Profile</a></li>
+  <li data-icon="shop"><a onclick="getbill1();" style= font-size:0.9em; data-rel="external" rel="external">View Bill</a></li>
+<li data-icon="user"><a onclick="getreg1();" style= font-size:0.9em; data-rel="external" rel="external">New Registration</a></li>
+   <li data-icon="user"><a onclick="getpass1();" style= font-size:0.9em; data-rel="external" rel="external">Change Password</a></li>
+
+   <li data-icon="user"><a href="shop_about_us.html?reload" style= font-size:0.9em; data-rel="external" rel="external">About Us</a></li>
+    <li data-icon="info"><a href="shop_faq.html?reload" style= font-size:0.9em; data-rel="external" rel="external">FAQ</a></li>
+  <li data-icon="phone"><a href="shop_contact_us.html?reload" style= font-size:0.9em; data-rel="external" rel="external">Contact Us</a></li>
+
+  <li data-icon="power"><a href="index.html?reload" style= font-size:0.9em; data-rel="external" rel="external" >Logout</a></li>
+</ul>
+</div> 
+   <div data-role="header" data-position="fixed">
+  <h3 style="text-align: center">CLIENT PROFILE</h3>
+           <a data-rel="external" rel="external"  role="button" data-role="button" data-mini="true" href="#overlayPanel1" class="ui-btn-left ui-btn-corner-all ui-btn  ui-icon-bars ui-btn-icon-notext ui-shadow" title="Home" data-form="ui-icon" data-theme="a" > 
+          </a>         
+       <a onclick="gethome1();" class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext" >Home</a>
+   </div>   
+ 
+<div data-role="main" class="ui-content" id="myTable">
+    
+  </div>
+</div> 
+
+</body>
+</html>
+

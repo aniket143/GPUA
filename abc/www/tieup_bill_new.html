@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">  
+ <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />  
+ <link rel="stylesheet" href="css/themes/my-custom-theme.css" />
+<script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/jquery.mobile-1.4.5.js"></script>  
+ <script src="jss/jquery-1.4.4.min.js"></script>  
+ <script>
+ function checkConnection(e) {
+		if (doesConnectionExist() == true) {
+	//	alert("connection exists!");
+amount1();
+		} else {
+			alert("connection doesn't exist!");
+		window.location.reload();
+		}
+	}
+	
+	function doesConnectionExist() {
+	    var xhr = new XMLHttpRequest();
+//var file = "member_details.php";
+	var file = "http://shopnearn.co.in/mobileapp/member_details.php";
+		var randomNum = Math.round(Math.random() * 10000);
+		
+		xhr.open('HEAD', file + "?rand=" + randomNum, false);
+	    
+	    try {
+	    	xhr.send();
+	    	
+		    if (xhr.status >= 200 && xhr.status < 304) {
+		        return true;
+		    } else {
+		        return false;
+		    }
+	    } catch (e) {
+	    	return false;
+	    }
+	}
+	
+function getname1()
+{
+var queryString = new Array();
+
+          if (window.location.search.split('?').length > 1) {
+                var params = window.location.search.split('?')[1].split('&');
+                for (var i = 0; i < params.length; i++) {
+                    var key = params[i].split('=')[0];
+                    var value = decodeURIComponent(params[i].split('=')[1]);
+                    queryString[key] = value;
+                }
+            }
+
+var myArray=queryString[key].split('|');
+  
+     document.getElementById('t1').value =myArray[0];
+     document.getElementById('t2').value =myArray[1];
+               document.getElementById('name1').innerHTML =myArray[1];
+     }
+      function checkid()
+   {
+ var sms=document.getElementById('sms').value;
+var code=document.getElementById('code').value;
+ var trans=document.getElementById('trans').checked;
+ if(code=="" || sms!=code)
+ {
+alert('Please Enter Correct  Password !!!'); 
+document.getElementById('code').value="";
+document.getElementById('trans').checked=false;
+ }     else
+ {
+
+ }
+    }
+    
+    function loadbillno()
+    {
+    $(function() {
+     $(document).ready(function() {
+        var shopid=document.getElementById('t1').value;
+            $.ajax({
+
+    // url: "billno.php",
+   url: "http://shopnearn.co.in/mobileapp/billno.php",
+         type     : 'POST',
+              data: ({shopid:shopid}),
+                  cache: false,
+                  dataType: "text",
+                  success: onSuccess
+                });
+                });
+     $("#resultLog").ajaxError(function(event, request, settings, exception) {
+          $("#resultLog").html("Error Calling: " + settings.url + "<br />HTTP Code: " + request.status);});
+          
+function onSuccess(data)
+        {
+        // alert(data);
+         document.getElementById('billno').value=data;
+          }
+  });  
+    }
+    $(function() {
+      $("#callAjax").click(function() {
+
+
+        var billno = $.trim($("#billno").val());
+                var bill = $.trim($("#bill").val());
+            var member1 = $.trim($("#member1").val());
+            var amount = $.trim($("#amount").val());
+            var sms= $.trim($("#sms").val());
+            var t1= $.trim($("#t1").val());     
+            var code= $.trim($("#code").val());
+               var pay= document.getElementById('pay').checked;
+                    var trans= document.getElementById('trans').checked;
+                    var name1= document.getElementById('name1').innerHTML;
+                    //alert(name1);
+         
+                    if(billno=="" || amount=="" ||pay==false|| trans==false || code=="" || name1=="")
+            {
+           alert("Please Enter Details Properly"); 
+                 document.getElementById('code').value="";
+                 document.getElementById('billno').value="";
+                 document.getElementById('amount').value="";
+                 document.getElementById('code').value="";
+               document.getElementById('bill').value="";
+
+            }
+            
+            else{
+            	 var clicked = false;
+        if(clicked === false) {
+        $(this).addClass('ui-disabled');
+        clicked = true;
+        alert('Your Transaction Processing,Please Wait...');
+            	
+            $.ajax({
+
+      //url: "tie_up.php",
+      url: "http://shopnearn.co.in/mobileapp/tie_up.php",
+           type     : 'POST',
+              data: ({billno: billno,amount:amount,member1:member1,t1:t1,sms:sms,bill:bill}),
+                  cache: false,
+                  dataType: "text",
+                  success: onSuccess
+                });
+                }
+            }
+                });
+     $("#resultLog").ajaxError(function(event, request, settings, exception) {
+          $("#resultLog").html("Error Calling: " + settings.url + "<br />HTTP Code: " + request.status);});
+function onSuccess(data)
+        {
+       // alert(data);
+                    var member1 = $.trim($("#member1").val());
+                    var billno = $.trim($("#billno").val());
+                    var amount = $.trim($("#amount").val());
+                    var t2 = $.trim($("#t2").val());
+                    var t1 = $.trim($("#t1").val());
+                     var pay= document.getElementById('pay').checked;
+                    var trans= document.getElementById('trans').checked;
+                    if(billno=="" || amount=="" ||pay==false|| trans==false)
+            {
+           alert("Please Enter Details Properly"); 
+                 document.getElementById('code').value="";
+                 document.getElementById('billno').value="";
+                 document.getElementById('com').value="";
+                 document.getElementById('amount').value="";
+            }
+            else{
+
+ $("#resultLog").html("Result: " + data);
+ alert("Your Transaction Completed Successfully..!!")
+             		window.location.href="report1.html?member="+member1+"|"+t2+"|"+t1;     
+
+
+
+        }
+        }
+  });
+    
+
+
+function numbersonly(myfield, e, dec)
+{
+  	var specialKeys = new Array();
+        specialKeys.push(8); //Backspace
+           var keyCode = e.which ? e.which : e.keyCode
+            var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+         //   document.getElementById("error").style.display = ret ? "none" : "inline";
+            return ret;
+}
+
+function amount1()
+{
+var amount=document.getElementById('amount').value;
+if(amount > 20000)
+{
+alert("Amount Should Not Exceed More Than 20,000..!!");
+document.getElementById('amount').value="";
+document.getElementById('code').value="";
+document.getElementById('amount').focus();
+}
+else
+{}
+}
+
+
+function radio()
+{
+var qrcode=document.getElementById('qrcode').checked;
+var cust_id=document.getElementById('cust_id').checked;
+var mobno=document.getElementById("mobno").checked;
+//alert(id1);
+if(qrcode==false && cust_id==false && mobno==false)
+{
+
+alert("Please Select Option First");
+
+document.getElementById('id').value="";
+
+}
+else
+{
+redirect();
+}
+}
+
+function redirect()
+{
+var qrcode=document.getElementById('qrcode').checked;
+var cust_id=document.getElementById('cust_id').checked;
+var mobno=document.getElementById("mobno").checked;
+var id=document.getElementById('id').value;
+
+   if(cust_id==true)
+    {
+  $(function() {
+  $("#submitt").click(function() {
+  	  loadbillno();
+            var id = $.trim($("#id").val());
+            
+       if(id.length > 0)
+            { $.ajax({
+
+        url: "http://shopnearn.co.in/mobileapp/member_details.php",
+           type     : 'GET',
+             data: ({name: id}),
+
+                  cache: false,
+                  dataType: "text",
+                  success: onSuccess
+                });}});
+    $("#resultLog").ajaxError(function(event, request, settings, exception) {
+          $("#resultLog").html("Error Calling: " + settings.url + "<br />HTTP Code: " + request.status);
+        });
+function onSuccess(data)
+        {
+       // alert(data);
+ $("#resultLog").html("Result: " + data);
+           var dd=data.split("|");
+        if(dd[2]!="")
+        {
+          
+          document.getElementById('member1').value=dd[0];
+          document.getElementById('name').value=dd[2];
+          document.getElementById('sms').value=dd[6];
+        }
+        else
+        {
+        alert("Please Enter Correct Customer ID");
+                  document.getElementById('id').value="";
+        }
+  
+       }
+  });
+     
+ }
+   else if(mobno==true)
+ {
+$(function() {
+  $("#submitt").click(function() {
+  	  loadbillno();
+            var id = $.trim($("#id").val());
+            
+       if(id.length > 0)
+            { $.ajax({
+             url: "http://shopnearn.co.in/mobileapp/mobno.php",
+           type     : 'GET',
+             data: ({name: id}),
+
+                  cache: false,
+                  dataType: "text",
+                  success: onSuccess
+                });}});
+    $("#resultLog").ajaxError(function(event, request, settings, exception) {
+          $("#resultLog").html("Error Calling: " + settings.url + "<br />HTTP Code: " + request.status);
+        });
+function onSuccess(data)
+        {
+           $("#resultLog").html("Result: " + data);
+          
+           var dd=data.split("|");
+ if(dd[2]!="")
+        {
+          
+document.getElementById('member1').value=dd[0];
+          document.getElementById('name').value=dd[2];
+          document.getElementById('sms').value=dd[6];
+        }
+        else
+        {
+        alert("Please Enter Correct Mobile No.");
+                  document.getElementById('id').value="";
+        }
+       }
+  });
+        }
+        else
+ {
+ 
+	window.location.href="qrcode1.html?member="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+ }
+
+
+}
+function getreg1()
+	{
+	window.location.href="client_registration1.html?member="+localStorage.getItem("shopname");
+	} 
+	
+	function getpass1()
+	{
+	window.location.href="change_password.html?memember="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+	} 
+	
+	function getbill1()
+	{
+	window.location.href="view_tbill.html?memember="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+	} 
+</script>
+
+</head>
+
+<body onload="getname1();">
+<div data-role="page" id="pagefour">
+<div data-role="panel" id="overlayPanel1" data-display="overlay" data-rel="back"> 
+    <ul data-role="listview">
+    <li data-icon="user"><a href="tieup_profile.html?reload" style= font-size:0.9em; data-rel="external" rel="external">Company Client Profile</a></li>
+  <li data-icon="shop"><a onclick="getbill1();" style= font-size:0.9em; data-rel="external" rel="external">View Bill</a></li>
+<li data-icon="user"><a onclick="getreg1();" style= font-size:0.9em; data-rel="external" rel="external">New Registration</a></li>
+   <li data-icon="user"><a onclick="getpass1();" style= font-size:0.9em; data-rel="external" rel="external">Change Password</a></li>
+
+   <li data-icon="user"><a href="tieup_about_us.html?reload" style= font-size:0.9em; data-rel="external" rel="external">About Us</a></li>
+    <li data-icon="info"><a href="tieup_faq.html?reload" style= font-size:0.9em; data-rel="external" rel="external">FAQ</a></li>
+  <li data-icon="phone"><a href="tieup_contact_us.html?reload" style= font-size:0.9em; data-rel="external" rel="external">Contact Us</a></li>
+
+  <li data-icon="power"><a href="index.html?reload" style= font-size:0.9em; data-rel="external" rel="external" >Logout</a></li>
+</ul>  
+</div> 
+
+ 
+   <div data-role="header" data-position="fixed">
+
+         <h3 style="text-align: center"><div id="name1"></div></h3>
+           <a data-rel="external" rel="external"  data-rel="back" data-role="button" data-mini="true" href="#overlayPanel1" class="ui-btn-left ui-btn-corner-all ui-btn  ui-icon-bars ui-btn-icon-notext ui-shadow" title="Home" data-form="ui-icon" data-theme="a" > 
+          </a>         
+
+       <a href="index.html?reload" class="ui-btn ui-corner-all ui-icon-power ui-btn-icon-notext" rel="external" >Logout</a>
+            </div>   
+<center><label><h3>Billing Transaction Process</h3></label></center>
+
+    <div data-role="main" class="ui-content">
+
+<!--<form name="contact_form" class="contact_form" method="post">-->
+    <fieldset data-role="controlgroup" data-iconpos="bottom" >
+	<div class="ui-grid-b"  >  
+
+		<div class="ui-block-a"  ><input type="radio" name="type" id="qrcode" value="qrcode" ><label for="qrcode" style="height:40px; border:2px solid;	border-radius: 7px;border-color:white;">	<font size="2">QR CODE	</font></label></div>
+		<div class="ui-block-b"><input type="radio" name="type" id="cust_id" value="cust_id" ><label for="cust_id" style="height:40px; border:2px solid;	border-radius: 7px;border-color:white;"><font size="2">CUSTOMER ID</font></label></div>
+		<div class="ui-block-c"><input type="radio" name="type" id="mobno" value="mobno" ><label for="mobno" style="height:40px; border:2px solid;	border-radius: 7px;border-color:white;"><font size="2">MOBILE NO</font></label></div>
+
+</div>
+</fieldset>
+
+<input type="hidden" name="member1" id="member1"  required>
+ <input type="hidden" name="sms" id="sms"  required> 
+ <input type="hidden" name="t1" id="t1" readonly>
+       <input type="hidden" name="t2" id="t2" readonly>
+<table style="width:100%">
+<tr>
+
+<td>
+<input type="text" name="id" id="id" placeholder="CUSTOMER ID OR MOBILE NO" onclick="radio();">
+</td>
+<td>
+<button id="submitt" type="submit" style="background-color:#00A600;color:white">SUBMIT</button>
+</td>
+</tr>
+</table>
+ <label for="name">Customer Name:</label>
+      <input type="text" name="name" id="name" placeholder="CUSTOMER NAME" readonly>
+     
+      <label for="billno">Transaction Bill No.:</label>
+      <input type="text" name="billno" id="billno" placeholder="TRANSACTION BILL NO" readonly >
+  
+   <label for="bill">Shop Bill No.:</label>
+      <input type="text" name="bill" id="bill"  >
+     
+      <label for="amount">Total Purchase  Amount:</label>
+      <input type="tel" name="amount" id="amount"   onkeypress="if(event.keyCode!=9) return numbersonly(this, event);" required>
+           
+    <label for="pay">Payment Confirm</label>
+          <input type="checkbox" name="pay" id="pay"  required>
+      <label for="code">Client Passward Code:</label>
+      <input type="tel" name="code" id="code" onclick="amount1();" maxlength="4" placeholder="4 Digit Number Only" onkeypress="if(event.keyCode!=9) return numbersonly(this, event);" required>
+  <label for="trans">Validation Confirm</label>
+      <input type="checkbox" name="trans" id="trans"  onclick="checkid();" required>
+      <button type="submit"  id="callAjax" onclick="checkConnection();" name="submit" data-transition="slide" style="background-color:#00A600;color:white">SUBMIT</button>    <!--</form>-->
+</div>
+</div>
+</body>
+</html>

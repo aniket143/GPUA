@@ -1,0 +1,28 @@
+
+/*button*/
+
+.button.button-fill {
+    background-color: white;
+    border-color: #f58635;
+    color: #05ace7;
+}
+
+/*button hover properties */
+
+.button.button-fill:hover{
+background-color:#fa8432;
+color: #ffffff ;
+}
+
+.navbar
+{
+background:transparent;
+font-size:15px;
+height:50px;
+}
+
+.content-block-inner
+{
+padding-top:22px;
+padding-bottom:5px;
+}

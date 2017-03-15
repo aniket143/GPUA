@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">  
+ <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />  
+ <link rel="stylesheet" href="css/themes/my-custom-theme.css" />
+<script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/jquery.mobile-1.4.5.js"></script>  
+ <script src="jss/jquery-1.4.4.min.js"></script>  
+<script type="text/javascript" charset="utf-8">
+function getreg()
+	{
+	window.location.href="client_registration.html?member="+localStorage.getItem("shopname");
+	} 
+	
+	function getbill()
+	{
+	window.location.href="view_sbill.html?memember="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+	} 
+	function gethome()
+	{
+	window.location.href="shop_bill_new.html?memember="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+	} 
+</script>
+        </head>
+<body>
+
+<div data-role="page" id="pageone">
+  <div data-role="panel" id="overlayPanel1" data-display="overlay" data-rel="back"> 
+    <ul data-role="listview">
+    <li data-icon="user"><a href="shop_profile.html?reload" style= font-size:0.9em; data-rel="external" rel="external">Company Client Profile</a></li>
+  <li data-icon="shop"><a onclick="getbill();" style= font-size:0.9em; data-rel="external" rel="external">View Bill</a></li>
+<li data-icon="user"><a onclick="getreg();" style= font-size:0.9em; data-rel="external" rel="external">New Registration</a></li>
+   <li data-icon="user"><a href="shop_about_us.html?reload" style= font-size:0.9em; data-rel="external" rel="external">About Us</a></li>
+    <li data-icon="info"><a href="shop_faq.html?reload" style= font-size:0.9em; data-rel="external" rel="external">FAQ</a></li>
+  <li data-icon="phone"><a href="shop_contact_us.html?reload" style= font-size:0.9em; data-rel="external" rel="external">Contact Us</a></li>
+
+  <li data-icon="power"><a href="index.html?reload" style= font-size:0.9em; data-rel="external" rel="external" >Logout</a></li>
+</ul>  
+</div> 
+   <div data-role="header" data-position="fixed">
+  <h3 style="text-align: center">ABOUT US</h3>
+           <a data-rel="external" rel="external"  role="button" data-role="button" data-mini="true" href="#overlayPanel1" class="ui-btn-left ui-btn-corner-all ui-btn  ui-icon-bars ui-btn-icon-notext ui-shadow" title="Home" data-form="ui-icon" data-theme="a" > 
+          </a>         
+       <a onclick="gethome();" class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext" >Home</a>
+   </div>   
+  <div data-role="main" class="ui-content">
+<!--     <a href="#one" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Company Information</a> -->
+    <a href="#one" data-rel="popup"  data-transition="flip">Company Information</a><br><br>
+    <a href="#two" data-rel="popup"  data-transition="flip">Why Guruprasad</a><br><br>
+    <a href="#three" data-rel="popup"  data-transition="flip">Our Aim</a><br><br>
+    <a href="#four" data-rel="popup"  data-transition="flip">Our Concept</a><br><br>
+  </div>
+<!-- <div data-role="panel" id="one"  align="middle" style="background-color:white;"> -->
+<div data-role="popup" id="one">
+<a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+
+  <p>
+  <p><center>
+<img src="guruprasad logo.png" class="ui-responsive" style="width:40%;hieght:40%;"> </img>
+                         <h2><font color="#04AAE9">Guruprasad Multi-Trade Marketing Pvt. Ltd</font></h2></center></p>
+	                                    <p> <b>Contact Us : info@shopnearn.co.in </b>  </p>
+
+<hr style="border-color:orange;">
+
+             <p style="word-wrap: break-word !important;white-space: normal !important"><p><b>Guruprasad  Multi-trade Marketing Pvt. Ltd</b> own sole right of shopnearn.co.in  website. 
+             </p><p style="word-wrap: break-word !important;white-space: normal !important">All the operation  and transactions are fully  done by Guruprasad Multi-trade Marketing Pvt. Ltd 
+            </p><p style="word-wrap: break-word !important;white-space: normal !important"> <b>Guruprasad Multi-trade Marketing Pvt. Ltd</b> is registered under company registration ACT 1956 in 
+              the year  2012-2013.</p>
+	<p style="word-wrap: break-word !important;white-space: normal !important">
+	 The objects for which the company is established are:
+	</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+The Main objects of the Company to be pursued on its Incorporation are:
+	</p>
+	<p style="word-wrap: break-word !important;white-space: normal !important">
+	To carry on the multi-trade business like marketing, sales organiser,
+
+distributor,trades, super stockiest, dealers, sellers,
+
+ jobbers,     importers & exporters, merchants,distributors in India &abroad
+
+agents, foods & beverages processors, consultants ,
+
+ franchise, wholesale & retailers, direct selling in all types of consumer
+
+goods products, FMCG products and to render the services
+
+that which my lead to effective and efficient sales and marketing methods
+
+and to deal in all the types of products.
+	</p>
+             <p><b>SHRI . MUKESH JANARDAN KAMBLI</b></p>
+             <p>
+             MANAGING DIRECTOR ,</p>
+             <p>GURUPRASAD  MULTI-TRADE  MARKETING PVT. LTD</p>
+             <p><b>Email US : md@shopnearn.co.in</b></p>
+<br>
+             <p><b>SHRI. SHIRISH  JAGDISH TAWATE</b></p>
+             <p>
+             DIRECTOR , GURUPRASAD MULTI-TRADE MARKETING PVT. LTD</p>
+             <p><b>Email US :  stawate@shopnearn.co.in</b></p>
+<br>
+           <p><b>  SHRI. PRAVIN VASANT KELUSKAR
+ </b></p><p>            CEO , DEVELOPMENT  & MARKETING ,</p>
+             <p>GURUPRASAD MULTI-TRADE MARKETING PVT. LTD</p>
+             <p><b>Email US : &nbsp;  ceo-marketing@shopnearn.co.in</b></p>
+             <p><b>Contact No :&nbsp;  8424999401</b></p>
+               
+               <br>
+               <br>
+               <table>
+        <tr>
+<td><b>COMPANY REGISTRATION No.</b></td><td><b>:</b>&nbsp;
+
+U93000MH2013PTC239913</td>
+
+</tr>
+
+<tr>
+
+<td><b>COMPANY PAN No.
+</b></td><td><b>:</b>&nbsp;
+AAFCGO453K
+</td>
+</tr>
+
+</table>
+</p>
+</div>
+
+<div data-role="popup" id="two">
+<a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+
+
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<center><h2><font color="#04AAE9">Why Guruprasad Multi-Trade Marketing Pvt. Ltd?</font></h2></center></p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+Many Marketing Companies are in existence only to satisfy the customer’s desire& to gain interest .Considering the costumer’s needs, their habitual nature, expenditures &standard of living the products are manufactured. The distribution business prospective eventually depends upon customer. The most surprising thing is , 80 % of customer’s life time and money is spend to fulfil their daily needs .where as there are only limited earning options in front of us to fulfilled these expenses . So small earning & high expenditure .</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+Inflation is increasing day-by-day but the income is not growing with same rate. Because of which, the customer has to adjust with his needs or the only way is to earn more & more to fulfil our daily needs. That leads to , Earning & Expending , Again Earning & Expending , Again earning more & expending more , this cycle runs forever.</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+There are two categories in this process first seller & second customer who purchase the products honestly for lifetime . Here jobs are preferred over business because doing a traditional business is difficult & hard to sustain rather than a job. Because of this almost 85 % of people goes for service & almost 15 % of people does business.</p>
+
+
+<p style="word-wrap: break-word !important;white-space: normal !important">
+The requirements for Business Enterprise are as follows:
+</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<b>*</b>&nbsp;Strong capital support</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<b>*</b>&nbsp;Proper technical knowledge of business enterprise.</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<b>*</b>&nbsp;Working place i.e. Office.</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<b>*</b>&nbsp;Transporting facilities i.e. Import & Export.</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<b>*</b>&nbsp;Warehouse for storing large amount of products.</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<b>*</b>&nbsp;Government laws, permission& limitations.</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<b>*</b>&nbsp;Payment of interest on loan.</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<b>*</b>&nbsp;Natural obstacles (disasters).</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<b>*</b>&nbsp;Different types of tax assessment respectively.</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<b>*</b>&nbsp;Availability of staff.</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<b>*</b>&nbsp;The most important is competition in market.</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<center><h2><font color="#04AAE9"> Welcome to our Guruprasad Multi-Trade Marketing Pvt. Ltd.</font></h2></center></p>
+<p style="word-wrap: break-word !important;white-space: normal !important">The Guruprasad Company is for all of us . Guruprasad as company work on strong beliefs of rules and practicality . On the basis of past work experience via marketing over last few years company has been successful in finding unprecedented path of financial growth for everyone.</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+Guruprasad as company, we are putting efforts to bring every customer together & bring financial growth in their life . Guruprasad has taken pledge to provide financial freedom , income for everyone and creating prosperous life through everyone’s contribution . Guruprasad is committed to provide you prosperous life.</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">While making a common man essential and integral part of financial superpowers Guruprasad will always with you all .
+</p><br><p style="word-wrap: break-word !important;white-space: normal !important">
+Regards,<p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+Team Guruprasad</p>
+</div>
+
+<div data-role="popup" id="three">
+<a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+
+
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<center><h2><font color="#04AAE9">Our Aim</font></h2></center></p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+The Guruprasad Company , in current scenario giving justice to manufacture , bringing manufacture and customer together ,working on principal of earning through expenses, making product available in market , nearby shop or directly at their home also providing its marketing opportunity and are offering earning source .
+</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+Regular purchase of product through company and giving this opportunity to other people , guiding them for being a part of this business and getting an earning source through our regular expense one can make his life prosperous . We would come to know that just being regular customer of the company and simply spreading awareness about this opportunity we will be successful in earning more income . We are welcoming competent people who are interested in independent business through innovative , creative and in simple way long term , legal earning .
+</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+Many great achiever’s names in history of Maharashtra are engraved in golden words, keeping them as ideal we should try to bring prosperity in our life. What should we do that will inspire our people in society to be passionate about evolution. It is hardly possible to gain high standard of life without our community’s support and acceptance . So let’s create a revolution , being agree with each others thought , participate in this work ,only then we can establish financial freedom & prosperity.
+
+
+</p>
+</div>
+
+<div data-role="popup" id="four">
+<a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+
+
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<center><h2><font color="#04AAE9">Our Concept</font></h2></center></p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+<b>Guruprasad Company has innovative way of marketing concept
+</b>
+</p>
+
+<p style="word-wrap: break-word !important;white-space: normal !important">
+1) The company provides you with your own business on the basis of promotion without investing any extra amount from customer.
+</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+2) There is no need of any special skills.
+</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+3) The customer should buy essential products regularly according to their need from the company.
+</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+4) You can convey this concept of company among other people .
+</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+5) The company offers extra income to register customers through providing this opportunity of marketing .
+</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+6) The company will provide you knowledge regarding the concepts & products regularly.
+</p>
+<p style="word-wrap: break-word !important;white-space: normal !important">
+Let’s come, you can also be part of this innovative business.
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+You are hearty welcome to Guruprasad Marketing Company.
+</p><p style="word-wrap: break-word !important;white-space: normal !important">
+Let’s make our life prosperous taking benefit of this phenomenal concept.
+</p>
+</div>
+</div>
+
+</body>
+</html>
+

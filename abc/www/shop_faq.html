@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">  
+ <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />  
+ <link rel="stylesheet" href="css/themes/my-custom-theme.css" />
+<script src="js/jquery-1.11.3.min.js"></script>
+ <script src="js/jquery.mobile-1.4.5.js"></script>  
+ <script src="jss/jquery-1.4.4.min.js"></script>  
+<script type="text/javascript"> 
+function getreg()
+	{
+	window.location.href="client_registration.html?member="+localStorage.getItem("shopname");
+	} 
+	
+	function getbill()
+	{
+	window.location.href="view_sbill.html?memember="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+	} 
+	function gethome()
+	{
+	window.location.href="shop_bill_new.html?memember="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+	} 
+</script>
+</head>
+<body>
+<div data-role="page" id="pageone" style="background-color:white;">
+  <div data-role="panel" id="overlayPanel1" data-display="overlay" data-rel="back"> 
+    <ul data-role="listview">
+    <li data-icon="user"><a href="shop_profile.html?reload" style= font-size:0.9em; data-rel="external" rel="external">Company Client Profile</a></li>
+  <li data-icon="shop"><a onclick="getbill();" style= font-size:0.9em; data-rel="external" rel="external">View Bill</a></li>
+<li data-icon="user"><a onclick="getreg();" style= font-size:0.9em; data-rel="external" rel="external">New Registration</a></li>
+   <li data-icon="user"><a href="shop_about_us.html?reload" style= font-size:0.9em; data-rel="external" rel="external">About Us</a></li>
+    <li data-icon="info"><a href="shop_faq.html?reload" style= font-size:0.9em; data-rel="external" rel="external">FAQ</a></li>
+  <li data-icon="phone"><a href="shop_contact_us.html?reload" style= font-size:0.9em; data-rel="external" rel="external">Contact Us</a></li>
+
+  <li data-icon="power"><a href="index.html?reload" style= font-size:0.9em; data-rel="external" rel="external" >Logout</a></li>
+</ul>  
+</div> 
+   <div data-role="header" data-position="fixed">
+  <h3 style="text-align: center">FAQ</h3>
+           <a data-rel="external" rel="external"  role="button" data-role="button" data-mini="true" href="#overlayPanel1" class="ui-btn-left ui-btn-corner-all ui-btn  ui-icon-bars ui-btn-icon-notext ui-shadow" title="Home" data-form="ui-icon" data-theme="a" > 
+          </a>         
+       <a onclick="gethome();" class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext" >Home</a>
+   </div>   
+ <p>
+<label style="font-size:18pt;font-family:'Bookman Old Style',serif;color:rgb(49,132,155)">What is a shopnearn CRP (Customer Retention Programme)  ?</label>
+<label style="font-family:'Bookman Old Style',serif"><b>Shopnearn CRP is the loyalty base purchasing system offered by Guruprasad Multi-trade marketing private ltd (GPMMPL)</b></label>
+ 
+<label style="font-size:18pt;font-family:'Bookman Old Style',serif;color:rgb(49,132,155)">How do I earn a Loyalty Cash-back?</label>
+<label style="font-family:'Bookman Old Style',serif"><b>Shopnearn customer  complete a purchase, customer is  qualified for  loyalty cash back  . This loyalty cash back  is remitted to your personal bank account  by company .loyalty cash back is derived by the company on the basis of overall business done by the company and your regular consistent purchase .Customer register with GPMMPL  through shopnearn.co.in , only those customer can avail this loyalty cash back.</b></label>
+ 
+<label style="font-size:18pt;font-family:'Bookman Old Style',serif;color:rgb(49,132,155)">How much loyalty Cash back I have earn ?</label>
+ <label style="font-family:'Bookman Old Style',serif"><b> Every register customer is given a GPMMPL client account . Customer can login into GPMMPL a/c can see his all details in my Income details link how much loyalty cash back they have earn .</b></label>
+                                                                                        
+<label style="font-size:18pt;font-family:'Bookman Old Style',serif;color:rgb(49,132,155)">What is GPMMPL client a/c ?</label>
+<label style="font-family:'Bookman Old Style',serif"><b> Every customer register with GPMMPL is given a special client account . where he /she can see their all transaction , every purchase details , done at any  GPMMPL related shop .
+Here client can see , add their profile details , purchase details , loyalty cash back  details , and all other facility available to client.  </b></label>
+ 
+<label style="font-size:18pt;font-family:'Bookman Old Style',serif;color:rgb(49,132,155)">How do I Pay?</label>
+<label style="font-family:'Bookman Old Style',serif"><b> Customer can pay for their purchase through cash on delivery or Online Payment. GPMMPL  have various online payment options that includes net banking, credit/debit card (Visa, Master and Maestro)  cards. Our trusted payment gateway, with secure encryption ensures that your transaction is safe. Alternatively, one can pay at the time of delivery by cash on Delivery Option. At the time of checkout customer should  mention the preferred mode of payment (online payment, cash)
+ </b></label>
+<label style="font-family:'Bookman Old Style',serif"><b><label style="font-size:18pt;font-family:'Bookman Old Style',serif;color:rgb(49,132,155)">Can I redeem Loyalty Cash-back ?</label>
+ Currently this facility is not activate by GPMMPL.</b></label>
+ 
+<label style="font-size:18pt;font-family:'Bookman Old Style',serif;color:rgb(49,132,155)">Delivery Charge?</label>
+<label style="font-family:'Bookman Old Style',serif"><b>There is no delivery charge Above 500 Rupees online  purchase.</b></label>
+</p>
+</div> 
+</body>
+</html>

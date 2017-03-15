@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./css/jquery.mobile-1.4.5.min.css"/>
+ <link rel="stylesheet" href="./css/jquery.mobile.icons.min.css" />  
+ <!--<link rel="stylesheet" href="css/themes/my-custom-theme.css" />-->
+  <link rel="stylesheet" href="css/my-custom-theme.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+ 
+ <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css">
+ <script src="./js/jquery-1.11.3.min.js"></script>-->
+ <script src="./js/jquery.mobile-1.4.5.js"></script>  
+ <script src="./js/jquery-1.7.min.js"></script>  
+ <script src="./js/bootstrap.min.js"></script>  
+ <!--<script src="./js/phonegap-1.4.1.js"></script>-->
+  <script src="phonegap.js"></script>
+ <!--<script src="phonegap-1.2.0.js"></script>-->
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+
+<script type="text/javascript" charset="utf-8"> 
+function checkConnection() {
+//	alert('chkconn');
+if (doesConnectionExist() == true) {
+	//	alert("connection exists!");
+			redirect();
+		} else {
+	//		 navigator.notification.alert('connection doesnt exist!',alertDismissed,'Reload Page','Done');
+			alert("connection doesnt exists!");
+                          window.location.reload();
+	}
+	}
+	
+	function doesConnectionExist() {
+	    var xhr = new XMLHttpRequest();
+//var file = "member_details.php";
+	var file = "http://shopnearn.co.in/mobileapp/member_details.php";
+		var randomNum = Math.round(Math.random() * 10000);
+		
+		xhr.open('HEAD', file + "?rand=" + randomNum, false);
+	    
+	    try {
+	    	xhr.send();
+	    	
+		     if(xhr.readyState == 4 && xhr.status >= 200) {
+		        return true;
+		    } else {
+		        return false;
+		    }
+	    } catch (e) {
+	    	return false;
+	    }
+	}
+function radio()
+{
+var shop=document.getElementById('shop').checked;
+var tieup=document.getElementById('tieup').checked;
+var id1=document.getElementById("myPopup");
+//alert(id1);
+if(shop==false && tieup==false)
+{
+
+alert("Please Select Option First");
+//alert(#myPopup);
+document.getElementById('fname').value="";
+document.getElementById('pwd').value="";
+}
+else
+{
+redirect();
+}
+}
+  function redirect()
+{
+	
+var shop=document.getElementById('shop').checked;
+var tieup=document.getElementById('tieup').checked;
+var fname=document.getElementById('fname').value;
+var pwd=document.getElementById('pwd').value;
+
+
+if(shop==false && tieup==false)
+{
+alert("Please Select Option First");
+document.getElementById('fname').value="";
+document.getElementById('pwd').value="";
+}
+else if(fname==""&& pwd=="")
+{
+//alert("Please enter details properly");
+document.getElementById('fname').value="";
+document.getElementById('pwd').value="";
+}
+else if(tieup==true)
+    {
+  $(function() {
+  $("#callAjax2").ready(function() {
+            var fname = $.trim($("#fname").val());
+            var pwd = $.trim($("#pwd").val());
+          
+
+          if(fname.length > 0 && pwd.length > 0 )
+            { $.ajax({
+   // url: "tieup_login.php",
+     url: 'http://shopnearn.co.in/mobileapp/tieup_login.php',
+           type     : 'GET',
+             data: ({name: fname,name1:pwd}),
+
+                  cache: false,
+                  dataType: 'text',
+                  crossDomain: true,  
+                  success: onSuccess
+                });}});
+    $("#resultLog").ajaxError(function(event, request, settings, exception) {
+          $("#resultLog").html("Error Calling: " + settings.url + "<br />HTTP Code: " + request.status);
+        });
+function onSuccess(data)
+        {
+           $("#resultLog").html("Result: " + data);
+          //alert(data);
+           var dd=data.split("|");
+           // alert(dd[0]);
+   if(dd[0]==name) 
+       {
+alert("Please enter correct username and password!!!");
+document.getElementById('fname').value="";       
+document.getElementById('pwd').value="";       
+       }
+       
+       else
+       {
+       if (typeof(Storage) != "undefined") 
+    {
+    localStorage.setItem("shopcode", encodeURIComponent(dd[1]));
+    localStorage.setItem("shopname", dd[0]);
+    		 window.location.href="tieup_bill_new.html?member="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+     }
+      
+       } 
+       
+       }
+  });
+        
+        
+   }
+   else 
+ {
+$(function() {
+      $("#callAjax2").ready(function() {
+     // alert('helllo');
+            var fname = $.trim($("#fname").val());
+            var pwd = $.trim($("#pwd").val());
+
+          if(fname.length > 0 && pwd.length > 0)
+            { $.ajax({
+      // url: "shop_login.php",
+      url: 'http://shopnearn.co.in/mobileapp/shop_login.php',
+           type     : 'GET',
+             data: ({name: fname,name1:pwd}),
+
+                  cache: false,
+                  dataType: 'text',
+                   crossDomain: true,  
+                  success: onSuccess
+                });}});
+    $("#resultLog").ajaxError(function(event, request, settings, exception) {
+          $("#resultLog").html("Error Calling: " + settings.url + "<br />HTTP Code: " + request.status);
+        });
+function onSuccess(data)
+        {
+           $("#resultLog").html("Result: " + data);
+           var ss=data.split("|");
+                     // alert(ss[0]);
+   if(ss[0]==name) 
+       {
+       	alert("Please enter correct username and password!!!");
+document.getElementById('fname').value="";       
+document.getElementById('pwd').value="";       
+
+       }
+       else
+       {
+     if (typeof(Storage) != "undefined") {
+    localStorage.setItem("shopcode", encodeURIComponent(ss[1]));
+    localStorage.setItem("shopname", ss[0]);
+    	window.location.href="shop_bill_new.html?code="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+   // 	window.location.href="home.html?code="+localStorage.getItem("shopcode")+'|'+localStorage.getItem("shopname");
+
+}
+       } }
+  });
+        }
+}
+
+    /* document.addEventListener("deviceready", onDeviceReady, false);  */
+
+     function onBodyLoad()
+            {
+                  document.addEventListener("deviceready", onDeviceReady, false);
+            }
+        
+         //ani
+     $(document).bind("mobileinit", function() {
+    $.support.cors = true;
+    $.mobile.allowCrossDomainPages = true;
+});
+
+     
+    function onDeviceReady() {
+        document.addEventListener("exitapp", exitFromApp, false);
+        document.addEventListener("offline", onOffline, false);
+
+    }
+    //ani
+    function onOffline()
+    {
+         // Handle the offline event
+        alert('Application is offline');
+    }
+   function exitFromApp()
+    {
+//	window.app.close();
+               if (navigator.app) {
+                 console.log("in button");
+                 navigator.app.exitApp();
+                }
+                else if (navigator.device) {
+      	            console.log("in button");
+                    navigator.device.exitApp();
+                }   
+        }
+        function exitFromApp1()
+    {
+//	w
+	device.exitApp();
+        }
+
+ 
+</script>
+</head>
+<body onload="onBodyLoad();">
+<!--.... ......First Page........ -->
+<div data-role="page" id="page" style="background-color:white;" >
+<div data-role="main" class="ui-content">
+<div align="middle">
+  <img src="guruprasad logo.png" class="ui-responsive" style="width:40%;height:40%;"> </img></div>
+  <div data-role="main" class="ui-content">
+<form method='post'>
+	<legend>Choose Your Type:</legend>
+ 
+       <!-- <legend>Choose Your Type:</legend>-->
+    <div data-role="main" class="ui-content">
+		  <button type="button" class="btn btn-default">Default</button>
+    <input type="button" class="ui-btn ui-corner-all" value="Guruprasad"></input>
+  </div>
+        <label for="client">Customer ID</label>
+        <input type="radio" name="type" id="client" value="client">
+        <label for="mob">Mobile No.</label>
+        <input type="radio" name="type" id="mob" value="mob">	
+      <label for="fname">Customer Login Id:</label>
+      <input type="text" name="fname" id="fname" onclick="radio();"  required>
+      <label for="lname">Password:</label>
+      <input type="password" name="pwd" id="pwd" onclick="radio();" required> 
+  <button id="callAjax2"  value="Submit" type="button" onclick="checkConnection();" >Submit </button>
+  </form>
+  <div  style="background-color:white;text-align:center;" >
+  <img src="logo.png" class="ui-responsive" style="width:35%;height:35%;"></img><br>
+ <label align="center" style="color:black;"> www.shopnearn.co.in </label><p><label align="center" style="color:rgb(231,120,23);"><i><b>Partner With Everyone</b></i></label></p>
+
+</div>
+       <button name="buttonClick" onclick="exitFromApp();">Exit App!</button>
+        <!-- 	<input type="button" name="Exit" value="Exit" onclick="exitFromApp();"></input>
+       	     	<input type="button" name="Exit" value="Exit" onclick="exitFromApp1();"></input>-->
+
+
+</div>
+  </div>
+    </div> 
+    <!--.... ......End of First Page........ -->
+</body>
+
+</html>

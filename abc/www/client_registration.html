@@ -1,0 +1,309 @@
+<div class="navbar">
+  <div class="navbar-inner" style="background-color: #fa8432;">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+    <div class="center sliding" style="margin-left: 21px;"><p style="text-align:center;">{{user}}</p></div>
+    <div class="right"><a href="#" data-panel="left" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
+  </div>
+</div>
+
+
+<div class="pages">
+  <div data-page="home" class="page">
+  
+    <div class="page-content" style="margin:72px 0">
+
+
+
+
+      <div class="content-block" style="margin-top: 0px;margin-bottom: 0px;color:#ff9500;">
+      
+
+
+	                  <br><div align="middle"><h3>Customer Registration Form</h3></div>
+          <!--<div class="col-100" align="left" style="color:#667600;    font-size: 1em;"><i><label>Select Your Type</label></i></div>
+         <div class="content-block-title">Icons and inputs</div>-->
+<div class="list-block">
+  <ul>
+    <!-- Text inputs -->
+    <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-name"></i></div>
+        <div class="item-inner">
+
+          <div class="item-input">
+             <input type="text" placeholder="Enter Sales Promoter ID" id="sponsorId" name="sponsorId" onblur="javascript:check_id(this.value);" >
+            <div class="item-title" id="message" style="color:red;"></div>
+           </div>
+        </div>
+      </div>
+    </li>
+      <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-name"></i></div>
+        <div class="item-inner">
+
+             <div class="item-input">
+            <select id="title" name="title">
+              <option>Male</option>
+              <option>Female</option>
+            </select>            
+          <!-- <div class="item-input">
+<select name="title" id="title" required>
+    <option value="Mr." selected="">Mr.</option>
+    <option value="Mrs">Mrs</option>
+    <option value="Ms.">Ms.</option>
+    <option value="Dr.">Dr.</option>
+                  </select>
+          </div> -->
+        </div>
+      </div>
+    </li>
+      <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-comment"></i></div>
+        <div class="item-inner">
+
+          <div class="item-input">
+          <input type="text" placeholder="Enter Applicant Name" id="applicateName" name="applicateName">
+          </div>
+        </div>
+      </div>
+    </li>
+        <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-name"></i></div>
+        <div class="item-inner">
+
+          <div class="item-input">
+<select name="nameTitle" id="nameTitle" required>
+                <option value="S/O" selected="">S/O</option>
+                <option value="W/O">W/O</option>
+                <option value="D/O">D/O</option>
+            </select> 
+                      <input type="text" placeholder="Enter Father/Husband's Name" id="fatherName" name="fatherName" >
+          </div>
+        </div>
+      </div>
+    </li>
+    
+    
+    
+    
+    
+           <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+        <div class="item-inner">
+
+          <div class="item-input">
+		
+
+			  <input placeholder="Enter Date Of Birth" class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="calendar">
+           <!-- <input type="date" placeholder="Enter Date Of Birth" id="calendar" >-->
+          </div>
+        </div>
+      </div>
+    </li>
+       <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-comment"></i></div>
+        <div class="item-inner">
+
+          <div class="item-input">
+            <input type="text" placeholder="Enter Pan No"  name="panNo" id="panNo" maxlength="10" >
+          </div>
+        </div>
+      </div>
+    </li>
+       <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-comment"></i></div>
+        <div class="item-inner">
+
+          <div class="item-input">
+            <input type="number" placeholder="Enter Card ID" name="cardid" id="cardid" maxlength="16" required>
+          </div>
+        </div>
+      </div>
+    </li>
+         <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-comment"></i></div>
+        <div class="item-inner">
+
+          <div class="item-input">
+            <textarea placeholder="Enter Address" name="address" id="address"></textarea>
+          </div>
+        </div>
+      </div>
+    </li>
+         <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-comment"></i></div>
+        <div class="item-inner">
+
+          <div class="item-input">
+            <input type="text" placeholder="Enter City/Town" name="city_town" id="city_town" onkeypress="javascript:return lettersOnly(event)" required>
+          </div>
+        </div>
+      </div>
+    </li>
+   <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-comment"></i></div>
+        <div class="item-inner">
+
+          <div class="item-input">
+            <input type="text" placeholder="Enter District" name="district" id="district" onkeypress="javascript:return lettersOnly(event)" required>
+          </div>
+        </div>
+      </div>
+    </li>
+      <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-comment"></i></div>
+        <div class="item-inner">
+
+          <div class="item-input">
+<select name="state" id="state" required >
+      <option value="" selected=""><option value="Andaman And Nicobar">Andaman And Nicobar</option>
+				 <option value="Andhra Pradesh">Andhra Pradesh</option><option value="Arunachal Pradesh">Arunachal Pradesh</option><option value="Assam">Assam</option>
+				 <option value="Bihar">Bihar</option><option value="Chandigarh">Chandigarh</option><option value="Chattisgarh">Chattisgarh</option>
+				 <option value="Dadar Nagar Haweli">Dadar Nagar Haweli</option><option value="Daman And Diu">Daman And Diu</option><option value="Delhi">Delhi</option>
+				 <option value="Goa">Goa</option><option value="Gujarat">Gujarat</option><option value="Haryana">Haryana</option>
+				 <option value="Himanchal Pradesh">Himanchal Pradesh</option><option value="Jammu And Kashmir">Jammu And Kashmir</option>
+				 <option value="Jharkhand">Jharkhand</option><option value="Karnataka">Karnataka</option><option value="Kerala">Kerala</option>
+				 <option value="Lakshadweep">Lakshadweep</option><option value="Madhya Pradesh">Madhya Pradesh</option><option value="Maharastra" selected>Maharashtra</option>
+				 <option value="Manipur">Manipur</option><option value="Meghalaya">Meghalaya</option><option value="Mizoram">Mizoram</option><option value="Nagaland">Nagaland</option><option value="Orissa">Orissa</option><option value="Pondicherry">Pondicherry</option><option value="Punjab">Punjab</option><option value="Rajasthan">Rajasthan</option><option value="Sikkim">Sikkim</option><option value="Tamilnadu">Tamilnadu</option><option value="Telangana">Telangana</option><option value="Tripura">Tripura</option>
+				 <option value="Uttar Pradesh">Uttar Pradesh</option><option value="Uttaranchal">Uttaranchal</option><option value="West Bengal">West Bengal</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </li>
+    
+    <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-comment"></i></div>
+        <div class="item-inner">
+
+          <div class="item-input">
+            <input type="number" placeholder="Enter PinCode" id="pincode" name="pincode" maxlength="6" onkeypress="javascript:if(event.keyCode!=9) return numbersonly(this, event);">
+          </div>
+        </div>
+      </div>
+    </li>  
+    
+       <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-tel"></i></div>
+        <div class="item-inner">
+
+          <div class="item-input">
+            <input type="number" placeholder="Enter Mobile No" id="mobileNo" maxlength="10" name="mobileNo" onblur="javascript:phonenumber(this.value);" onkeypress="if(event.keyCode!=9) return numbersonly(this, event);"  required>
+          </div>
+        </div>
+      </div>
+<p class="buttons-row"><a href="#"  onclick="javascript:msg_send();" class="button button-big button-fill button-raised">Confirm</a>
+    </li>
+    
+   <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-comment"></i></div>
+        <div class="item-inner">
+
+          <div class="item-input">
+            <input  id="ccode" type="number" maxlength="4" name="ccode" placeholder="Enter Confirm code" onkeypress="javascript:if(event.keyCode!=9) return numbersonly(this, event);"  required  required>
+
+          </div>
+        </div>
+      </div>
+
+    </li> 
+    
+    
+      <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-email"></i></div>
+        <div class="item-inner">
+
+          <div class="item-input">
+            <input type="text" placeholder="Enter Email Id" id="email" name="email" onclick="javascript:email_add(this.value);"   required>
+          <div class="item-title" id="emailval" style="color:red;"></div>
+          </div>
+        </div>
+      </div>
+
+    </li>
+    <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-password"></i></div>
+        <div class="item-inner">
+          <div class="item-input">
+            <input id="password" type="password" placeholder="Password" name="password" maxlength="4"  required>
+
+          </div>
+        </div>
+      </div>
+
+    </li>
+    <li>
+      <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-password"></i></div>
+        <div class="item-inner">
+          <div class="item-input">
+            <input  placeholder="Confirm Password" id="confirm_password" type="password" onkeyup="checkPass(); return false;" name="confirm_password" maxlength="4" required>
+
+          </div>
+        </div>
+      </div>
+
+    </li>
+    
+    <!-- Select -->
+ 
+    <!-- Date -->
+    
+    
+    
+    <li>
+      <div class="item-content">
+        <!--<div class="item-media"><i class="icon icon-form-calendar"></i></div>
+        <div class="item-inner">
+          <div class="item-input">
+            <input type="date" placeholder="Birth day" value="2014-04-30">
+          </div>
+        </div>-->
+        <label class="label-checkbox item-content">
+              <input type="checkbox" name="ks-checkbox" onclick="javascript:check();"  value="A" />
+              <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+              <div class="item-inner">
+                <div class="item-title">I agree </div>
+				       <div class="item-title"><a href="Loyaltytermsconditions.html" data-rel="popup"  data-transition="flip">"Terms and conditions"</a></div>
+
+              </div>
+            </label>
+
+      </div>
+    </li>
+    <li>
+		      
+
+          <p class="buttons-row"><a href="#"  onclick="javascript:submitform();" class="button button-big button-fill button-raised">Submit</a>
+          <br>
+          <a href="#" onclick="javascript:cancel();" class="button button-big button-fill button-raised">Cancel</a>
+          </p>
+      </li>
+      <li>
+		      <div class="item-content">
+
+       
+        </div>
+      </li>
+ </ul>
+</div> 
+      </div>
+
+    </div>
+  </div>
+</div>
