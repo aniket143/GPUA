@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.example" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<?xml version='2.0' encoding='utf-8'?>
+<widget id="com.phonegap.example" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>GPUA</name>
     <description>
-        Guruprasad User Apps
+        Guruprasad User Application
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
         PhoneGap Team
