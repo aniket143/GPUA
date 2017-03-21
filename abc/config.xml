@@ -52,6 +52,12 @@
  <!--<plugin name="cordova-plugins-barcodescanner" source="npm" spec="~ 1.1.0" />  
     <plugin name="com.phonegap.plugins.barcodescanner" spec="2.0.0" source="pgb" />-->
     <plugin name="cordova-plugin-x-socialsharing" source="npm" spec="~ 5.0.7" />
+    <feature name="BarcodeScanner">
+
+<param name="android-package" value="com.phonegap.plugins.barcodescanner.BarcodeScanner" />
+</feature>
+
+
 
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
