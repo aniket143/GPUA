@@ -412,9 +412,16 @@ myApp.modalPassword('Enter Your Password?', 'Password',
 			if(rewpt=='' && totamt =='' )
 				{
 					 netamt=0;
+				}		
+				else if (totamt == '')
+				{		
+							
+					myApp.alert('Please Enter Purchase Amount','Alert');	
 				}
+			
 				else if(rewpt=='' && totamt != '' )
 				{
+					
 					 netamt=totamt;
 				}
 				else if(parseInt(rewpt) > parseInt(totamt))
@@ -469,18 +476,21 @@ function submit()
 		 		 var reward_pt = $('#rewpt').val();
 		 var t1 = $('#t1').val(); 
 		 	var isCheck = $('#chk_id').prop('checked');
+			 var chk_id = $('#chk_id').prop('checked');
 
 		 var abc1 = chkconnection();
+	if (netamt != 0 || netamt !='') {	
+
 	if (abc1 == 2)
 	{
 		    if(totamt != '' & netamt != '' & billno != '')
 			{ 
-	 $$.post('http://shopnearn.co.in/mobileapp/insertdetail.php', {memberId:memberId,billno:billno,bill:bill,totamt:totamt,netamt:netamt,t1:t1,reward_pt:reward_pt,isCheck:isCheck}, function (data) 
+	 $$.post('http://shopnearn.co.in/mobileapp/insertdetail.php', {memberId:memberId,billno:billno,bill:bill,totamt:totamt,netamt:netamt,t1:t1,reward_pt:reward_pt,isCheck:isCheck,chk_id:chk_id}, function (data) 
 		{
 		 //  var dd=data.split("|");
 
   //$('div#message').html(data);
- 		 			 myApp.alert(data,"Bill");
+ 		 			 myApp.alert(data,"");
 					mainView.router.loadPage('qrcode.html');
 
  
@@ -493,8 +503,8 @@ function submit()
 			var error1="Please Enter Details Properly";
 		$$('div#message').html(error1);
 		
-			  myApp.alert("Please Enter Details Properly");
-		mainView.router.loadPage('index.html');
+			  myApp.alert("Please Enter Details Properly","Alert");
+		//mainView.router.loadPage('index.html');
 			}
 	
 	}
@@ -502,6 +512,11 @@ function submit()
 	{
 							myApp.alert("No Internet Connection Found","Alert");
 
+	}
+	}	
+	else
+	{
+							myApp.alert("Please Enter Amount","Alert");
 	}
 }
 
@@ -517,7 +532,7 @@ function contact()
 	
 	      if(reg.test(address)==false)
                 {
-               myApp.alert("Please Enter Valid Email Address");
+               myApp.alert("Please Enter Valid Email Address","Alert");
               // $('#address').val()=='';    
 //$('#address').val()='';
 			$('#address').val('');
@@ -526,7 +541,7 @@ function contact()
                 
                  if(address==""||name==""||enquiry=="")
                  {
-               myApp.alert("Please Enter All Details Properly...!!!");
+               myApp.alert("Please Enter All Details Properly...!!!","Alert");
             $('#name').val('')=""; 
             $('#address').val('') ="";         
             $('#enquiry').val('') =""; 
@@ -605,7 +620,8 @@ mainView.router.load({
      last_datepur: dd[5],
      totalqua: dd[6],
      total1qua: dd[7],
-     reg_time122qua: dd[8]
+     reg_time122qua: dd[8],
+	    tot_reg: dd[9]
     }
 })
 })
