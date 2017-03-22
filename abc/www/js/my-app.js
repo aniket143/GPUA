@@ -398,7 +398,8 @@ function rew()
 	
 	var netamt=0;
 
-	
+	   var blank='';
+
 	if (isChecked == true)
 	{
 myApp.modalPassword('Enter Your Password?', 'Password', 
@@ -419,6 +420,9 @@ myApp.modalPassword('Enter Your Password?', 'Password',
 				else if(parseInt(rewpt) > parseInt(totamt))
 				{
 					myApp.alert('Your Reward Points are more than Purchase Cost','Alert');
+					$('#totamt').val(blank);
+					$$('input[type="checkbox"]').prop('checked', false);
+
 					netamt=totamt;
 				}					
 				else
@@ -438,7 +442,7 @@ myApp.modalPassword('Enter Your Password?', 'Password',
       function (value) {
         //myApp.alert('Your name is "' + value + '". You clicked Cancel button','SBIT');
        // $('#chk_id').prop()=false;
-	$('#chk_id').prop('checked')=false;
+       $$('input[type="checkbox"]').prop('checked', false);
       }
     );	
 			//	  myApp.alert("i m in reward function");
