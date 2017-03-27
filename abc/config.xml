@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.example" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>GPSapp</name>
+<widget id="com.shopapp.example" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>GTSapp</name>
     <description>
         Guruprasad shop Application
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="support@sbitinfo.in" href="http://sbitinfo.in">
+I-Net Infotech Team
     </author>
     <content src="index.html" />
     <preference name="fullscreen" value="false" />
